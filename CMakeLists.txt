@@ -49,12 +49,16 @@ set(CMAKE_INSTALL_RPATH "$ORIGIN/../libs")
 
 set(CORE_SOURCES
     src/core/main.cpp
+    src/core/game_character.cpp
+    src/core/player.cpp
+    src/core/small_enemy.cpp
+    src/core/game_scene.cpp
     )
-    
+
 set(PLANTOWER_SOURCES
         ${CORE_SOURCES}
     )
-    
+
 if(CMAKE_SYSTEM_NAME STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-allow-multiple-definition")
 endif()
@@ -65,4 +69,4 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME} Salmon)
 
 set(CMAKE_INSTALL_PREFIX ${Plantower_SOURCE_DIR})
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-install(TARGETS Salmon DESTINATION libs)
+#install(TARGETS Salmon DESTINATION libs)
