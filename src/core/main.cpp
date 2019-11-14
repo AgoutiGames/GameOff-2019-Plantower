@@ -1,7 +1,7 @@
-#include "gameinfo.hpp"
+#include "scene_manager.hpp"
 int main() {
-    salmon::GameInfo game(960, 720);
-    game.load_map("../salmon/data/maps/orthogonal_demo.tmx");
-    while(game.update()) {game.render();}
+    SceneManager game(960, 720);
+    game.load_scene("../salmon/data/maps/orthogonal_demo.tmx");
+    while(game.run()) {}
     return 0;
 }

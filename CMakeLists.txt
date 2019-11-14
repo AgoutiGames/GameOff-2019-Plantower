@@ -53,6 +53,7 @@ set(CORE_SOURCES
     src/core/player.cpp
     src/core/small_enemy.cpp
     src/core/game_scene.cpp
+    src/core/scene_manager.cpp
     )
 
 set(PLANTOWER_SOURCES

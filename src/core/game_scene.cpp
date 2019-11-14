@@ -4,7 +4,8 @@
 
 #include "data_block_ref.hpp"
 
-GameScene::GameScene(salmon::MapRef map, salmon::GameInfo* game) : salmon::MapRef(map), m_game{game} {}
+GameScene::GameScene(salmon::MapRef map, salmon::GameInfo* game, SceneManager* scene_manager)
+: salmon::MapRef(map), m_game{game} , m_scene_manager{scene_manager} {}
 
 void GameScene::init() {
     std::vector<salmon::ActorRef> actors = get_actors();
@@ -55,7 +56,7 @@ bool GameScene::put(std::string& var, std::string name) {
     return true;
 }
 
-GameScene* GameScene::parse_scene(salmon::MapRef map, salmon::GameInfo* game) {
+GameScene* GameScene::parse_scene(salmon::MapRef map, salmon::GameInfo* game, SceneManager* scene_manager) {
     std::string type = map.get_data().get_val_string("type");
     if(type == "Menu") {
         return nullptr;
@@ -68,3 +69,19 @@ GameScene* GameScene::parse_scene(salmon::MapRef map, salmon::GameInfo* game) {
         return nullptr;
     }
 }
+
+GameCharacter& GameScene::get_character_by_name(std::string name) {}
+GameCharacter& GameScene::get_character_by_template_type(std::string template_type) {}
+GameCharacter& GameScene::get_character_by_attribute(std::string name, bool attribute) {}
+GameCharacter& GameScene::get_character_by_attribute(std::string name, int attribute) {}
+GameCharacter& GameScene::get_character_by_attribute(std::string name, float attribute) {}
+GameCharacter& GameScene::get_character_by_attribute(std::string name, std::string attribute) {}
+
+std::vector<GameCharacter*> GameScene::get_characters_by_name(std::string name) {
+    std::vector<GameCharacter*> characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, bool attribute) {}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, int attribute) {}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, float attribute) {}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, std::string attribute) {}
