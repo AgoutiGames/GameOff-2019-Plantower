@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-SceneManager::SceneManager(int x_res, int y_res) : m_game(x_res, y_res) {}
+SceneManager::SceneManager(int x_res, int y_res,bool fullscreen) : m_game(x_res, y_res, fullscreen) {}
 
 bool SceneManager::load_scene(std::string map_filename) {
     if(m_game.load_map(map_filename)) {

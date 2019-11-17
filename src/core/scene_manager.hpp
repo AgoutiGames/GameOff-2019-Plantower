@@ -10,7 +10,7 @@
 
 class SceneManager {
 public:
-    SceneManager(int x_res, int y_res);
+    SceneManager(int x_res, int y_res,bool fullscreen);
     bool load_scene(std::string map_filename);
     void close_scene();
     void next_scene(std::string map_filename) {m_next_scene = map_filename;}
