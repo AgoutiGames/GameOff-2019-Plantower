@@ -26,12 +26,12 @@ class GameScene : public salmon::MapRef {
         bool put(float& var, std::string name);
         bool put(std::string& var, std::string name);
 
-        GameCharacter& get_character_by_name(std::string name);
-        GameCharacter& get_character_by_template_type(std::string template_type);
-        GameCharacter& get_character_by_attribute(std::string name, bool attribute);
-        GameCharacter& get_character_by_attribute(std::string name, int attribute);
-        GameCharacter& get_character_by_attribute(std::string name, float attribute);
-        GameCharacter& get_character_by_attribute(std::string name, std::string attribute);
+        GameCharacter* get_character_by_name(std::string name);
+        GameCharacter* get_character_by_template_type(std::string template_type);
+        GameCharacter* get_character_by_attribute(std::string name, bool attribute);
+        GameCharacter* get_character_by_attribute(std::string name, int attribute);
+        GameCharacter* get_character_by_attribute(std::string name, float attribute);
+        GameCharacter* get_character_by_attribute(std::string name, std::string attribute);
 
         std::vector<GameCharacter*> get_characters_by_name(std::string name);
         std::vector<GameCharacter*> get_characters_by_template_type(std::string template_type);

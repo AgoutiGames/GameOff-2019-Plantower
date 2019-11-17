@@ -85,18 +85,80 @@ std::map<std::string, GameScene*>& GameScene::get_dict() {
     return scene_dict;
 }
 
-GameCharacter& GameScene::get_character_by_name(std::string name) {}
-GameCharacter& GameScene::get_character_by_template_type(std::string template_type) {}
-GameCharacter& GameScene::get_character_by_attribute(std::string name, bool attribute) {}
-GameCharacter& GameScene::get_character_by_attribute(std::string name, int attribute) {}
-GameCharacter& GameScene::get_character_by_attribute(std::string name, float attribute) {}
-GameCharacter& GameScene::get_character_by_attribute(std::string name, std::string attribute) {}
+GameCharacter* GameScene::get_character_by_name(std::string name) {
+    std::vector<GameCharacter*> characters = get_characters_by_name(name);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
+GameCharacter* GameScene::get_character_by_template_type(std::string template_type) {
+    std::vector<GameCharacter*> characters = get_characters_by_template_type(template_type);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
+GameCharacter* GameScene::get_character_by_attribute(std::string name, bool attribute) {
+    std::vector<GameCharacter*> characters = get_characters_by_attribute(name,attribute);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
+GameCharacter* GameScene::get_character_by_attribute(std::string name, int attribute) {
+    std::vector<GameCharacter*> characters = get_characters_by_attribute(name,attribute);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
+GameCharacter* GameScene::get_character_by_attribute(std::string name, float attribute) {
+    std::vector<GameCharacter*> characters = get_characters_by_attribute(name,attribute);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
+GameCharacter* GameScene::get_character_by_attribute(std::string name, std::string attribute) {
+    std::vector<GameCharacter*> characters = get_characters_by_attribute(name,attribute);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
 
 std::vector<GameCharacter*> GameScene::get_characters_by_name(std::string name) {
     std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        if(c->get_name() == name) {characters.push_back(c.get());}
+    }
+    return characters;
 }
-std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {}
-std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, bool attribute) {}
-std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, int attribute) {}
-std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, float attribute) {}
-std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, std::string attribute) {}
+std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        if(c->get_type() == template_type) {characters.push_back(c.get());}
+    }
+    return characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, bool attribute) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        salmon::DataBlockRef data = c->get_data();
+        if(data.check_val_bool(name) && data.get_val_bool(name) == attribute) {characters.push_back(c.get());}
+    }
+    return characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, int attribute) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        salmon::DataBlockRef data = c->get_data();
+        if(data.check_val_int(name) && data.get_val_int(name) == attribute) {characters.push_back(c.get());}
+    }
+    return characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, float attribute) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        salmon::DataBlockRef data = c->get_data();
+        if(data.check_val_float(name) && data.get_val_float(name) == attribute) {characters.push_back(c.get());}
+    }
+    return characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_attribute(std::string name, std::string attribute) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        salmon::DataBlockRef data = c->get_data();
+        if(data.check_val_string(name) && data.get_val_string(name) == attribute) {characters.push_back(c.get());}
+    }
+    return characters;
+}
