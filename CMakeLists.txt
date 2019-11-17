@@ -56,8 +56,13 @@ set(CORE_SOURCES
     src/core/scene_manager.cpp
     )
 
+set(SCENE_SOURCES
+    src/scenes/environment.cpp
+    )
+
 set(GAME_SOURCES
         ${CORE_SOURCES}
+        ${SCENE_SOURCES}
     )
 
 # Nasty hack making possible to statically link twice

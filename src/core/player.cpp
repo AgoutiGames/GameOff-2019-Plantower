@@ -11,7 +11,7 @@ void Player::init() {
 }
 
 void Player::update() {
-    const salmon::InputCacheRef input = m_scene->get_game().get_input_cache();
+    const salmon::InputCacheRef input = m_scene->get_input_cache();
     float x_dir = 0;
     float y_dir = 0;
     if(input.is_down(m_up_key) || input.is_down(m_up_key_alt)) {
@@ -30,5 +30,7 @@ void Player::update() {
     // Diagonal walk check
     if(x_dir && y_dir) {x_dir /= 2; y_dir /= 2;}
 
-    move(x_dir * m_current_speed, y_dir * m_current_speed);
+    float delta = m_scene->get_delta_time();
+
+    move(x_dir * m_base_speed * delta, y_dir * m_base_speed * delta);
 }

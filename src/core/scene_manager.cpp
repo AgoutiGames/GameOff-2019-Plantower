@@ -6,7 +6,7 @@ SceneManager::SceneManager(int x_res, int y_res,bool fullscreen) : m_game(x_res,
 
 bool SceneManager::load_scene(std::string map_filename) {
     if(m_game.load_map(map_filename)) {
-        GameScene* scene = GameScene::parse_scene(m_game.get_map(), &m_game, this);
+        GameScene* scene = GameScene::parse_scene(m_game.get_map(), this);
         if(scene == nullptr) {
             std::cerr << "Failed to parse scene: " << map_filename << "!\n";
             return false;

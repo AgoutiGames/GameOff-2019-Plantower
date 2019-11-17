@@ -16,6 +16,8 @@ public:
     void next_scene(std::string map_filename) {m_next_scene = map_filename;}
     void shutdown() {m_run = false;}
     bool run();
+
+    salmon::GameInfo& get_game() {return m_game;}
 private:
     bool m_run = true;
     salmon::GameInfo m_game;
