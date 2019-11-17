@@ -40,13 +40,13 @@ if (NOT MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra -Wfatal-errors")
 endif()
 
-include_directories(src, salmon/src/include)
-
 set(LIB_TARGET ON CACHE BOOL "Build library version without event support")
 add_subdirectory(salmon)
 
+# Search library in libs folder residing beneath the bin folder
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../libs")
 
+# Thic can/should get more granular over time
 set(CORE_SOURCES
     src/core/main.cpp
     src/core/game_character.cpp
@@ -56,18 +56,23 @@ set(CORE_SOURCES
     src/core/scene_manager.cpp
     )
 
-set(PLANTOWER_SOURCES
+set(GAME_SOURCES
         ${CORE_SOURCES}
     )
 
+# Nasty hack making possible to statically link twice
+# This circumvents having to ship huge libgcc and libstd++ lib as dynamic libs
 if(CMAKE_SYSTEM_NAME STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-allow-multiple-definition")
 endif()
 
-add_executable(${PROJECT_NAME} ${PLANTOWER_SOURCES})
+add_executable(${PROJECT_NAME} ${GAME_SOURCES})
 
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} Salmon)
+target_include_directories(${PROJECT_NAME} PUBLIC src)
 
-set(CMAKE_INSTALL_PREFIX ${Plantower_SOURCE_DIR})
+target_link_libraries(${PROJECT_NAME} PUBLIC Salmon)
+
+set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+# Works only with CMake version 3.13+
 #install(TARGETS Salmon DESTINATION libs)
