@@ -5,6 +5,7 @@
 #include "gameinfo.hpp"
 #include "data_block_ref.hpp"
 #include "core/scene_manager.hpp"
+
 #include "scenes/environment.hpp"
 
 GameScene::GameScene(salmon::MapRef map, SceneManager* scene_manager)
@@ -14,7 +15,12 @@ void GameScene::init() {
     std::vector<salmon::ActorRef> actors = get_actors();
     for(salmon::ActorRef a : actors) {
         m_characters.emplace_back(GameCharacter::parse_character(a, this));
-        m_characters.back()->init();
+        if(m_characters.back() == nullptr) {
+            m_characters.pop_back();
+        }
+        else {
+            m_characters.back()->init();
+        }
     }
 }
 
@@ -61,23 +67,22 @@ bool GameScene::put(std::string& var, std::string name) {
 
 GameScene* GameScene::parse_scene(salmon::MapRef map, SceneManager* scene_manager) {
     std::string type = map.get_data().get_val_string("type");
-    if(type == "Menu") {
-        return nullptr;
-    }
-    else if(type == "Environment") {
-        return new Environment(map,scene_manager);
-    }
-    else if(type == "BattleStage") {
+    if(get_dict().find(type) == get_dict().end()) {
+        std::cerr << "Unknown Game Scene type: " << type << " supplied!\n";
         return nullptr;
     }
     else {
-        std::cerr << "Unknown Game Scene type: " << type << " supplied!\n";
-        return nullptr;
+        return get_dict().at(type)->create(map, scene_manager);
     }
 }
 
 salmon::InputCacheRef GameScene::get_input_cache() {
     return m_scene_manager->get_game().get_input_cache();
+}
+
+std::map<std::string, GameScene*>& GameScene::get_dict() {
+    static std::map<std::string, GameScene*> scene_dict;
+    return scene_dict;
 }
 
 GameCharacter& GameScene::get_character_by_name(std::string name) {}

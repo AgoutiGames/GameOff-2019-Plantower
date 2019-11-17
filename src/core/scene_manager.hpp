@@ -6,7 +6,7 @@
 #include <string>
 
 #include "gameinfo.hpp"
-#include "game_scene.hpp"
+#include "core/game_scene.hpp"
 
 class SceneManager {
 public:

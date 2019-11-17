@@ -1,9 +1,10 @@
-#include "game_character.hpp"
+#include "core/game_character.hpp"
 
 #include <iostream>
 
-#include "player.hpp"
-#include "game_scene.hpp"
+#include "core/game_scene.hpp"
+
+#include "characters/player.hpp"
 
 GameCharacter::GameCharacter(salmon::ActorRef actor, GameScene* scene) : salmon::ActorRef(actor), m_scene{scene} {}
 
@@ -34,14 +35,16 @@ bool GameCharacter::put(std::string& var, std::string name) {
 
 GameCharacter* GameCharacter::parse_character(salmon::ActorRef actor, GameScene* scene) {
     std::string type = actor.get_data().get_val_string("type");
-    if(type == "Player") {
-        return new Player(actor, scene);
-    }
-    else if(type == "SmallEnemy") {
+    if(get_dict().find(type) == get_dict().end()) {
+        std::cerr << "Unknown Game Character type: \"" << type << "\" supplied!\n";
         return nullptr;
     }
     else {
-        std::cerr << "Unknown Game Character type: " << type << " supplied!\n";
-        return nullptr;
+        return get_dict().at(type)->create(actor, scene);
     }
+}
+
+std::map<std::string, GameCharacter*>& GameCharacter::get_dict() {
+    static std::map<std::string, GameCharacter*> character_dict;
+    return character_dict;
 }

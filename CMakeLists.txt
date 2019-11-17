@@ -50,8 +50,6 @@ set(CMAKE_INSTALL_RPATH "$ORIGIN/../libs")
 set(CORE_SOURCES
     src/core/main.cpp
     src/core/game_character.cpp
-    src/core/player.cpp
-    src/core/small_enemy.cpp
     src/core/game_scene.cpp
     src/core/scene_manager.cpp
     )
@@ -60,9 +58,15 @@ set(SCENE_SOURCES
     src/scenes/environment.cpp
     )
 
+set(CHARACTER_SOURCES
+    src/characters/player.cpp
+    src/characters/small_enemy.cpp
+    )
+
 set(GAME_SOURCES
         ${CORE_SOURCES}
         ${SCENE_SOURCES}
+        ${CHARACTER_SOURCES}
     )
 
 # Nasty hack making possible to statically link twice

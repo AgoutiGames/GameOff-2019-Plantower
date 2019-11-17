@@ -2,10 +2,13 @@
 
 #include "core/scene_manager.hpp"
 
+const bool Environment::good = GameScene::register_class<Environment>("Environment");
+
 Environment::Environment(salmon::MapRef map, SceneManager* scene_manager) :
     GameScene(map,scene_manager) {}
 
 void Environment::init() {GameScene::init();}
+
 void Environment::update() {
     salmon::InputCacheRef input = get_input_cache();
     if(input.just_pressed("Escape")) {

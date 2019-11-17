@@ -1,4 +1,4 @@
-#include "scene_manager.hpp"
+#include "core/scene_manager.hpp"
 
 #include <iostream>
 

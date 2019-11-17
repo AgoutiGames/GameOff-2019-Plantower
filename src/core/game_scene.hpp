@@ -1,12 +1,14 @@
 #ifndef GAME_SCENE_HPP_INCLUDED
 #define GAME_SCENE_HPP_INCLUDED
 
+#include <map>
 #include <vector>
 #include <memory>
+#include <string>
 
 #include "map_ref.hpp"
-#include "game_character.hpp"
 #include "input_cache_ref.hpp"
+#include "core/game_character.hpp"
 
 class SceneManager;
 
@@ -17,6 +19,7 @@ class GameScene : public salmon::MapRef {
 
         virtual void init();
         virtual void update();
+        virtual GameScene* create(salmon::MapRef map, SceneManager* scene_manager) const = 0;
 
         bool put(bool& var, std::string name);
         bool put(int& var, std::string name);
@@ -47,7 +50,22 @@ class GameScene : public salmon::MapRef {
         std::vector<std::unique_ptr<GameCharacter>> m_characters;
 
         std::vector<GameCharacter*> m_kill_characters;
+
+        template <class T>
+        static bool register_class(std::string type);
+    private:
+        static std::map<std::string, GameScene*>& get_dict();
 };
+
+template <class T>
+bool GameScene::register_class(std::string type) {
+    MapRef dummy(nullptr);
+    GameScene* scene = new T(dummy,nullptr);
+    get_dict()[type] = scene;
+    return true;
+}
+
+
 
 
 #endif // GAME_SCENE_HPP_INCLUDED

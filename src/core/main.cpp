@@ -1,4 +1,4 @@
-#include "scene_manager.hpp"
+#include "core/scene_manager.hpp"
 int main() {
     SceneManager game(960, 720,false);
     game.load_scene("../data/test_map.tmx");
