@@ -2,7 +2,10 @@
 
 #include "core/scene_manager.hpp"
 
-const bool Environment::good = GameScene::register_class<Environment>("Environment");
+#include "characters/player.hpp"
+
+const char* Environment::type = "Environment";
+const bool Environment::good = GameScene::register_class<Environment>(Environment::type);
 
 Environment::Environment(salmon::MapRef map, SceneManager* scene_manager) :
     GameScene(map,scene_manager) {}
@@ -14,5 +17,9 @@ void Environment::update() {
     if(input.just_pressed("Escape")) {
         m_scene_manager->shutdown();
     }
+
+    Player* p = get_character<Player>();
+    p->move(1,0);
+
     GameScene::update();
 }

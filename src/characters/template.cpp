@@ -1,6 +1,7 @@
 #include "characters/template.hpp"
 
-const bool Template::good = GameCharacter::register_class<Template>("Template");
+const char* Template::type = "Template";
+const bool Template::good = GameCharacter::register_class<Template>(Template::type);
 
 Template::Template(salmon::ActorRef actor, GameScene* scene) : GameCharacter(actor, scene) {}
 

@@ -1,6 +1,7 @@
 #include "scenes/template.hpp"
 
-const bool Template::good = GameScene::register_class<Template>("Template");
+const char* Template::type = "Template";
+const bool Template::good = GameScene::register_class<Template>(Template::type);
 
 Template::Template(salmon::MapRef map, SceneManager* scene_manager) :
     GameScene(map,scene_manager) {}

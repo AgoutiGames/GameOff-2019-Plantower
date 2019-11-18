@@ -31,14 +31,32 @@ class GameScene : public salmon::MapRef {
         GameCharacter* get_character_by_attribute(std::string name, bool attribute);
         GameCharacter* get_character_by_attribute(std::string name, int attribute);
         GameCharacter* get_character_by_attribute(std::string name, float attribute);
+        GameCharacter* get_character_by_attribute(std::string name, const char* attribute);
         GameCharacter* get_character_by_attribute(std::string name, std::string attribute);
+        template <class T>
+        T* get_character();
 
         std::vector<GameCharacter*> get_characters_by_name(std::string name);
         std::vector<GameCharacter*> get_characters_by_template_type(std::string template_type);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, bool attribute);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, int attribute);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, float attribute);
+        std::vector<GameCharacter*> get_characters_by_attribute(std::string name, const char* attribute);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, std::string attribute);
+        template <class T>
+        std::vector<T*> get_characters();
+
+        std::vector<GameCharacter*> filter_characters_by_name(std::vector<GameCharacter*> characters, std::string name);
+        std::vector<GameCharacter*> filter_characters_by_template_type(std::vector<GameCharacter*> characters, std::string template_type);
+        std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, bool attribute);
+        std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, int attribute);
+        std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, float attribute);
+        std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, const char* attribute);
+        std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, std::string attribute);
+        template <class T>
+        std::vector<T*> filter_characters(std::vector<GameCharacter*>);
+
+        std::vector<GameCharacter*> get_characters();
 
         void remove_character(GameCharacter* game_character) {m_kill_characters.push_back(game_character);}
 
@@ -56,6 +74,28 @@ class GameScene : public salmon::MapRef {
     private:
         static std::map<std::string, GameScene*>& get_dict();
 };
+
+template <class T>
+std::vector<T*> GameScene::filter_characters(std::vector<GameCharacter*> characters) {
+    std::vector<T*> new_characters;
+    for(auto c : characters) {new_characters.push_back(static_cast<T*>(c));}
+    return new_characters;
+}
+
+template <class T>
+std::vector<T*> GameScene::get_characters() {
+    std::vector<GameCharacter*> characters = get_characters_by_attribute("type",T::type);
+    std::vector<T*> new_characters;
+    for(auto c : characters) {new_characters.push_back(static_cast<T*>(c));}
+    return new_characters;
+}
+
+template <class T>
+T* GameScene::get_character() {
+    std::vector<T*> characters = get_characters<T>();
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
+}
 
 template <class T>
 bool GameScene::register_class(std::string type) {

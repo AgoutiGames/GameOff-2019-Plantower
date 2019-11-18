@@ -13,6 +13,8 @@ class Player : public GameCharacter {
 
         void init() override;
         void update() override;
+
+        static const char* type;
     private:
         static const bool good;
 

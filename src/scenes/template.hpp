@@ -12,6 +12,8 @@ class Template : public GameScene {
 
         void init() override;
         void update() override;
+
+        static const char* type;
     protected:
         // Add members here
         

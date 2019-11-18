@@ -2,7 +2,8 @@
 
 #include "core/game_scene.hpp"
 
-const bool Player::good = GameCharacter::register_class<Player>("Player");
+const char* Player::type = "Player";
+const bool Player::good = GameCharacter::register_class<Player>(Player::type);
 
 Player::Player(salmon::ActorRef actor, GameScene* scene) : GameCharacter(actor, scene) {}
 
