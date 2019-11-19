@@ -7,6 +7,7 @@
 #include <string>
 
 #include "map_ref.hpp"
+#include "audio_manager_ref.hpp"
 #include "input_cache_ref.hpp"
 #include "core/game_character.hpp"
 
@@ -62,6 +63,7 @@ class GameScene : public salmon::MapRef {
 
         SceneManager& get_scene_manager() {return *m_scene_manager;}
         salmon::InputCacheRef get_input_cache();
+        salmon::AudioManagerRef get_audio_manager();
 
     protected:
         SceneManager* m_scene_manager;

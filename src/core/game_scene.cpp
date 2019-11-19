@@ -80,6 +80,10 @@ salmon::InputCacheRef GameScene::get_input_cache() {
     return m_scene_manager->get_game().get_input_cache();
 }
 
+salmon::AudioManagerRef GameScene::get_audio_manager() {
+    return m_scene_manager->get_game().get_audio_manager();
+}
+
 std::map<std::string, GameScene*>& GameScene::get_dict() {
     static std::map<std::string, GameScene*> scene_dict;
     return scene_dict;

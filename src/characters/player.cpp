@@ -2,6 +2,7 @@
 
 #include "core/game_scene.hpp"
 
+#include <iostream>
 const char* Player::type = "Player";
 const bool Player::good = GameCharacter::register_class<Player>(Player::type);
 
@@ -34,4 +35,13 @@ void Player::update() {
     float delta = m_scene->get_delta_time();
 
     move(x_dir * m_base_speed * delta, y_dir * m_base_speed * delta);
+
+    if(input.just_pressed("1")) {
+        salmon::SoundRef sound = m_scene->get_audio_manager().get_sound(get_data().get_val_string("sound1"));
+        if(sound.good()) {sound.play();}
+    }
+    if(input.just_pressed("2")) {
+        salmon::SoundRef sound = m_scene->get_audio_manager().get_sound(get_data().get_val_string("sound2"));
+        if(sound.good()) {sound.play();}
+    }
 }
