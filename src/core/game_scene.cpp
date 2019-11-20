@@ -14,30 +14,81 @@ GameScene::GameScene(salmon::MapRef map, SceneManager* scene_manager)
 void GameScene::init() {
     std::vector<salmon::ActorRef> actors = get_actors();
     for(salmon::ActorRef a : actors) {
-        m_characters.emplace_back(GameCharacter::parse_character(a, this));
-        if(m_characters.back() == nullptr) {
-            m_characters.pop_back();
-        }
-        else {
-            m_characters.back()->init();
+        add_character(a);
+    }
+    trigger_add();
+}
+
+GameCharacter* GameScene::add_character(std::string actor_template_name, std::string layer_name) {
+    salmon::ActorRef actor = add_actor(actor_template_name, layer_name);
+    if(!actor.good()) {return nullptr;}
+    else {
+        return add_character(actor);
+    }
+}
+GameCharacter* GameScene::add_character(salmon::ActorRef actor, std::string layer_name) {
+    salmon::ActorRef added_actor = add_actor(actor,layer_name);
+    if(!added_actor.good()) {return nullptr;}
+    else {
+        return add_character(added_actor);
+    }
+}
+GameCharacter* GameScene::add_character(salmon::ActorRef actor) {
+    if(!actor.good()) {return nullptr;}
+    GameCharacter* character = GameCharacter::parse_character(actor, this);
+    if(character == nullptr) {return nullptr;}
+    else {
+        m_add_characters.push_back(character);
+        return character;
+    }
+}
+GameCharacter* GameScene::add_character(GameCharacter* character, std::string layer_name) {
+    // First duplicate the actor which is wrapped in the Character
+    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name);
+    if(!actor.good()) {return nullptr;}
+    return add_character(actor);
+}
+
+bool GameScene::remove_character_internal(GameCharacter* game_character) {
+    for(auto it = m_characters.begin(); it != m_characters.end(); it++) {
+        if((*it).get() == game_character) {
+            // Cast child GameCharacter to parent ActorRef
+            salmon::ActorRef* to_kill_actor = static_cast<salmon::ActorRef*>(game_character);
+            // After this call the pointer to the actor inside the GameCharacter is invalidated
+            remove_actor(*to_kill_actor);
+            // Therefore we also have to erase it here
+            m_characters.erase(it);
+            return true;
         }
     }
+    return false;
 }
 
 void GameScene::update() {
+    trigger_add();
+    trigger_kill();
+    for(auto& c : m_characters) {c->update();}
+}
+
+void GameScene::trigger_kill() {
     if(!m_kill_characters.empty()) {
         for(GameCharacter* to_kill : m_kill_characters) {
-            for(auto it = m_characters.begin(); it != m_characters.end(); it++) {
-                if((*it).get() == to_kill) {
-                    // Maybe hide the Actor or some other stuff
-                    m_characters.erase(it);
-                    break;
-                }
+            if(!remove_character_internal(to_kill)) {
+                std::cerr << "Failed to remove character: \"" << to_kill->get_name() << "\"\n";
             }
         }
+        m_kill_characters.clear();
     }
-    m_kill_characters.clear();
-    for(auto& c : m_characters) {c->update();}
+}
+
+void GameScene::trigger_add() {
+    if(!m_add_characters.empty()) {
+        for(GameCharacter* to_add : m_add_characters) {
+            m_characters.emplace_back(to_add);
+            to_add->init();
+        }
+        m_add_characters.clear();
+    }
 }
 
 bool GameScene::put(bool& var, std::string name) {
@@ -93,6 +144,12 @@ GameCharacter* GameScene::get_character_by_name(std::string name) {
     std::vector<GameCharacter*> characters = get_characters_by_name(name);
     if(characters.empty()) {return nullptr;}
     else {return characters.front();}
+}
+GameCharacter* GameScene::get_character_by_id(unsigned id) {
+    for(auto& c : m_characters) {
+        if(c->get_id() == id) {return c.get();}
+    }
+    return nullptr;
 }
 GameCharacter* GameScene::get_character_by_template_type(std::string template_type) {
     std::vector<GameCharacter*> characters = get_characters_by_template_type(template_type);

@@ -19,7 +19,12 @@ void Environment::update() {
     }
 
     Player* p = get_character<Player>();
-    p->move(1,0);
+    if(p) {p->move(1,0);}
+
+    if(input.just_pressed("p"))  {
+        GameCharacter* p = get_character_by_name("Player");
+        remove_character(p);
+    }
 
     GameScene::update();
 }

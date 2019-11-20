@@ -2,7 +2,6 @@
 
 #include "core/game_scene.hpp"
 
-#include <iostream>
 const char* Player::type = "Player";
 const bool Player::good = GameCharacter::register_class<Player>(Player::type);
 
@@ -10,6 +9,7 @@ Player::Player(salmon::ActorRef actor, GameScene* scene) : GameCharacter(actor, 
 
 void Player::init() {
     put(m_base_speed, "m_base_speed");
+    register_collisions(false);
 }
 
 void Player::update() {
@@ -43,5 +43,10 @@ void Player::update() {
     if(input.just_pressed("2")) {
         salmon::SoundRef sound = m_scene->get_audio_manager().get_sound(get_data().get_val_string("sound2"));
         if(sound.good()) {sound.play();}
+    }
+
+    if(input.just_pressed("x")) {
+        GameCharacter* c = m_scene->add_character<Player>(this,"Characters");
+        if(c) {c->move(100,0);}
     }
 }

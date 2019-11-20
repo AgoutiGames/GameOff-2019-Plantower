@@ -28,6 +28,7 @@ class GameScene : public salmon::MapRef {
         bool put(std::string& var, std::string name);
 
         GameCharacter* get_character_by_name(std::string name);
+        GameCharacter* get_character_by_id(unsigned id);
         GameCharacter* get_character_by_template_type(std::string template_type);
         GameCharacter* get_character_by_attribute(std::string name, bool attribute);
         GameCharacter* get_character_by_attribute(std::string name, int attribute);
@@ -59,6 +60,20 @@ class GameScene : public salmon::MapRef {
 
         std::vector<GameCharacter*> get_characters();
 
+        // Add character by its template name
+        GameCharacter* add_character(std::string actor_template_name, std::string layer_name);
+        GameCharacter* add_character(const char* actor_template_name, std::string layer_name) {return add_character(std::string(actor_template_name),layer_name);}
+
+        // This duplicates the supplied actor
+        GameCharacter* add_character(salmon::ActorRef actor, std::string layer_name);
+        // This takes an already added actor
+        GameCharacter* add_character(salmon::ActorRef actor);
+        // This duplicates the actor inside the character, the new characters mebers are reset and init is called
+        GameCharacter* add_character(GameCharacter* character, std::string layer_name);
+        // This also duplicates the members of the character, but init is called again nevertheless
+        template <class T>
+        GameCharacter* add_character(T* character, std::string layer_name);
+
         void remove_character(GameCharacter* game_character) {m_kill_characters.push_back(game_character);}
 
         SceneManager& get_scene_manager() {return *m_scene_manager;}
@@ -70,10 +85,14 @@ class GameScene : public salmon::MapRef {
         std::vector<std::unique_ptr<GameCharacter>> m_characters;
 
         std::vector<GameCharacter*> m_kill_characters;
+        void trigger_kill();
+        std::vector<GameCharacter*> m_add_characters;
+        void trigger_add();
 
         template <class T>
         static bool register_class(std::string type);
     private:
+        bool remove_character_internal(GameCharacter* game_character);
         static std::map<std::string, GameScene*>& get_dict();
 };
 
@@ -107,7 +126,20 @@ bool GameScene::register_class(std::string type) {
     return true;
 }
 
-
+template <class T>
+GameCharacter* GameScene::add_character(T* character, std::string layer_name) {
+    // Duplicate the derived character type | Both reference the same actor
+    T* new_char = new T(*character);
+    // Duplicate the actor
+    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name);
+    if(!actor.good()) {return nullptr;}
+    else {
+        // Assign the actor to the new character
+        *static_cast<salmon::ActorRef*>(new_char) = actor;
+        m_add_characters.push_back(new_char);
+        return m_add_characters.back();
+    }
+}
 
 
 #endif // GAME_SCENE_HPP_INCLUDED
