@@ -60,21 +60,21 @@ class GameScene : public salmon::MapRef {
 
         std::vector<GameCharacter*> get_characters();
 
-        // Add character by its template name
-        GameCharacter* add_character(std::string actor_template_name, std::string layer_name);
-        GameCharacter* add_character(const char* actor_template_name, std::string layer_name) {return add_character(std::string(actor_template_name),layer_name);}
-
-        // This duplicates the supplied actor
-        GameCharacter* add_character(salmon::ActorRef actor, std::string layer_name);
-        // This takes an already added actor
+        // Take an already generated and added actor
         GameCharacter* add_character(salmon::ActorRef actor);
+
+        // Add character by its template name
+        GameCharacter* add_character(std::string actor_template_name, std::string layer_name, std::string actor_name = "GENERATED");
+        GameCharacter* add_character(const char* actor_template_name, std::string layer_name, std::string actor_name = "GENERATED")
+        {return add_character(std::string(actor_template_name),layer_name,actor_name);}
+
         // This duplicates the actor inside the character, the new characters mebers are reset and init is called
-        GameCharacter* add_character(GameCharacter* character, std::string layer_name);
+        GameCharacter* add_character(GameCharacter* character, std::string layer_name, std::string actor_name = "GENERATED");
         // This also duplicates the members of the character, but init is called again nevertheless
         template <class T>
-        GameCharacter* add_character(T* character, std::string layer_name);
+        GameCharacter* add_character(T* character, std::string layer_name, std::string actor_name = "GENERATED");
 
-        void remove_character(GameCharacter* game_character) {m_kill_characters.push_back(game_character);}
+        void remove_character(GameCharacter* game_character);
 
         SceneManager& get_scene_manager() {return *m_scene_manager;}
         salmon::InputCacheRef get_input_cache();
@@ -127,11 +127,11 @@ bool GameScene::register_class(std::string type) {
 }
 
 template <class T>
-GameCharacter* GameScene::add_character(T* character, std::string layer_name) {
+GameCharacter* GameScene::add_character(T* character, std::string layer_name, std::string actor_name) {
     // Duplicate the derived character type | Both reference the same actor
     T* new_char = new T(*character);
     // Duplicate the actor
-    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name);
+    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name,actor_name);
     if(!actor.good()) {return nullptr;}
     else {
         // Assign the actor to the new character

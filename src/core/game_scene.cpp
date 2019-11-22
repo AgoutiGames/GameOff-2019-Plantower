@@ -19,18 +19,11 @@ void GameScene::init() {
     trigger_add();
 }
 
-GameCharacter* GameScene::add_character(std::string actor_template_name, std::string layer_name) {
-    salmon::ActorRef actor = add_actor(actor_template_name, layer_name);
+GameCharacter* GameScene::add_character(std::string actor_template_name, std::string layer_name, std::string actor_name) {
+    salmon::ActorRef actor = add_actor(actor_template_name, layer_name, actor_name);
     if(!actor.good()) {return nullptr;}
     else {
         return add_character(actor);
-    }
-}
-GameCharacter* GameScene::add_character(salmon::ActorRef actor, std::string layer_name) {
-    salmon::ActorRef added_actor = add_actor(actor,layer_name);
-    if(!added_actor.good()) {return nullptr;}
-    else {
-        return add_character(added_actor);
     }
 }
 GameCharacter* GameScene::add_character(salmon::ActorRef actor) {
@@ -42,9 +35,9 @@ GameCharacter* GameScene::add_character(salmon::ActorRef actor) {
         return character;
     }
 }
-GameCharacter* GameScene::add_character(GameCharacter* character, std::string layer_name) {
+GameCharacter* GameScene::add_character(GameCharacter* character, std::string layer_name, std::string actor_name) {
     // First duplicate the actor which is wrapped in the Character
-    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name);
+    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name,actor_name);
     if(!actor.good()) {return nullptr;}
     return add_character(actor);
 }
@@ -68,6 +61,15 @@ void GameScene::update() {
     trigger_add();
     trigger_kill();
     for(auto& c : m_characters) {c->update();}
+}
+
+void GameScene::remove_character(GameCharacter* game_character) {
+    if(game_character == nullptr) {
+        std::cerr << "Character to remove is a null pointer!\n";
+    }
+    else {
+        m_kill_characters.push_back(game_character);
+    }
 }
 
 void GameScene::trigger_kill() {
