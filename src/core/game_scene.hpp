@@ -39,6 +39,7 @@ class GameScene : public salmon::MapRef {
         T* get_character();
 
         std::vector<GameCharacter*> get_characters_by_name(std::string name);
+        std::vector<GameCharacter*> get_characters_by_layer(std::string name);
         std::vector<GameCharacter*> get_characters_by_template_type(std::string template_type);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, bool attribute);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, int attribute);
@@ -49,6 +50,7 @@ class GameScene : public salmon::MapRef {
         std::vector<T*> get_characters();
 
         std::vector<GameCharacter*> filter_characters_by_name(std::vector<GameCharacter*> characters, std::string name);
+        std::vector<GameCharacter*> filter_characters_by_layer(std::vector<GameCharacter*> characters, std::string name);
         std::vector<GameCharacter*> filter_characters_by_template_type(std::vector<GameCharacter*> characters, std::string template_type);
         std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, bool attribute);
         std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, int attribute);

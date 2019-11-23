@@ -199,6 +199,13 @@ std::vector<GameCharacter*> GameScene::get_characters_by_name(std::string name) 
     }
     return characters;
 }
+std::vector<GameCharacter*> GameScene::get_characters_by_layer(std::string name) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        if(c->get_layer() == name) {characters.push_back(c.get());}
+    }
+    return characters;
+}
 std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {
     std::vector<GameCharacter*> characters;
     for(auto& c : m_characters) {
@@ -251,6 +258,13 @@ std::vector<GameCharacter*> GameScene::filter_characters_by_name(std::vector<Gam
     std::vector<GameCharacter*> ncharacters;
     for(auto c : characters) {
         if(c->get_name() == name) {characters.push_back(c);}
+    }
+    return ncharacters;
+}
+std::vector<GameCharacter*> GameScene::filter_characters_by_layer(std::vector<GameCharacter*> characters, std::string name) {
+    std::vector<GameCharacter*> ncharacters;
+    for(auto c : characters) {
+        if(c->get_layer() == name) {characters.push_back(c);}
     }
     return ncharacters;
 }
