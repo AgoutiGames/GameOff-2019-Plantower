@@ -26,6 +26,7 @@ GameCharacter* GameScene::add_character(std::string actor_template_name, std::st
         return add_character(actor);
     }
 }
+/// @note The returned character will get inited the next frame
 GameCharacter* GameScene::add_character(salmon::ActorRef actor) {
     if(!actor.good()) {return nullptr;}
     GameCharacter* character = GameCharacter::parse_character(actor, this);
@@ -85,8 +86,13 @@ void GameScene::trigger_kill() {
 
 void GameScene::trigger_add() {
     if(!m_add_characters.empty()) {
+        // First parsed characters get added to the scene
         for(GameCharacter* to_add : m_add_characters) {
             m_characters.emplace_back(to_add);
+        }
+        // Then all new actors get inited
+        // This is VERY important for characters who want to fetch other characters in their initialization phase
+        for(GameCharacter* to_add : m_add_characters) {
             to_add->init();
         }
         m_add_characters.clear();
