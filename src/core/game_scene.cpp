@@ -19,20 +19,14 @@ void GameScene::init() {
     trigger_add();
 }
 
-GameCharacter* GameScene::add_character(std::string actor_template_name, std::string layer_name) {
-    salmon::ActorRef actor = add_actor(actor_template_name, layer_name);
+GameCharacter* GameScene::add_character(std::string actor_template_name, std::string layer_name, std::string actor_name) {
+    salmon::ActorRef actor = add_actor(actor_template_name, layer_name, actor_name);
     if(!actor.good()) {return nullptr;}
     else {
         return add_character(actor);
     }
 }
-GameCharacter* GameScene::add_character(salmon::ActorRef actor, std::string layer_name) {
-    salmon::ActorRef added_actor = add_actor(actor,layer_name);
-    if(!added_actor.good()) {return nullptr;}
-    else {
-        return add_character(added_actor);
-    }
-}
+/// @note The returned character will get inited the next frame
 GameCharacter* GameScene::add_character(salmon::ActorRef actor) {
     if(!actor.good()) {return nullptr;}
     GameCharacter* character = GameCharacter::parse_character(actor, this);
@@ -42,9 +36,9 @@ GameCharacter* GameScene::add_character(salmon::ActorRef actor) {
         return character;
     }
 }
-GameCharacter* GameScene::add_character(GameCharacter* character, std::string layer_name) {
+GameCharacter* GameScene::add_character(GameCharacter* character, std::string layer_name, std::string actor_name) {
     // First duplicate the actor which is wrapped in the Character
-    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name);
+    salmon::ActorRef actor = add_actor(*static_cast<salmon::ActorRef*>(character),layer_name,actor_name);
     if(!actor.good()) {return nullptr;}
     return add_character(actor);
 }
@@ -70,6 +64,15 @@ void GameScene::update() {
     for(auto& c : m_characters) {c->update();}
 }
 
+void GameScene::remove_character(GameCharacter* game_character) {
+    if(game_character == nullptr) {
+        std::cerr << "Character to remove is a null pointer!\n";
+    }
+    else {
+        m_kill_characters.push_back(game_character);
+    }
+}
+
 void GameScene::trigger_kill() {
     if(!m_kill_characters.empty()) {
         for(GameCharacter* to_kill : m_kill_characters) {
@@ -83,8 +86,13 @@ void GameScene::trigger_kill() {
 
 void GameScene::trigger_add() {
     if(!m_add_characters.empty()) {
+        // First parsed characters get added to the scene
         for(GameCharacter* to_add : m_add_characters) {
             m_characters.emplace_back(to_add);
+        }
+        // Then all new actors get inited
+        // This is VERY important for characters who want to fetch other characters in their initialization phase
+        for(GameCharacter* to_add : m_add_characters) {
             to_add->init();
         }
         m_add_characters.clear();
@@ -197,6 +205,13 @@ std::vector<GameCharacter*> GameScene::get_characters_by_name(std::string name) 
     }
     return characters;
 }
+std::vector<GameCharacter*> GameScene::get_characters_by_layer(std::string name) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        if(c->get_layer() == name) {characters.push_back(c.get());}
+    }
+    return characters;
+}
 std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {
     std::vector<GameCharacter*> characters;
     for(auto& c : m_characters) {
@@ -249,6 +264,13 @@ std::vector<GameCharacter*> GameScene::filter_characters_by_name(std::vector<Gam
     std::vector<GameCharacter*> ncharacters;
     for(auto c : characters) {
         if(c->get_name() == name) {characters.push_back(c);}
+    }
+    return ncharacters;
+}
+std::vector<GameCharacter*> GameScene::filter_characters_by_layer(std::vector<GameCharacter*> characters, std::string name) {
+    std::vector<GameCharacter*> ncharacters;
+    for(auto c : characters) {
+        if(c->get_layer() == name) {characters.push_back(c);}
     }
     return ncharacters;
 }

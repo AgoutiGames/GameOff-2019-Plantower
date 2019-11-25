@@ -2,6 +2,8 @@
 
 #include "core/game_scene.hpp"
 
+#include "text_ref.hpp"
+
 const char* Player::type = "Player";
 const bool Player::good = GameCharacter::register_class<Player>(Player::type);
 
@@ -48,5 +50,11 @@ void Player::update() {
     if(input.just_pressed("x")) {
         GameCharacter* c = m_scene->add_character<Player>(this,"Characters");
         if(c) {c->move(100,0);}
+    }
+
+    if(input.just_pressed("t")) {
+        salmon::TextRef::Attributes temp;
+        temp.bold = true;
+        m_scene->add_text("Test Text", "Characters",get_x(), get_y() + 20, "For the lulz!", temp);
     }
 }
