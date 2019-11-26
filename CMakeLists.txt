@@ -62,14 +62,20 @@ set(SCENE_SOURCES
 set(CHARACTER_SOURCES
     src/characters/button.cpp
     src/characters/player.cpp
+    src/characters/tower.cpp
     src/characters/small_enemy.cpp
     )
 
-set(GAME_SOURCES
-        ${CORE_SOURCES}
-        ${SCENE_SOURCES}
-        ${CHARACTER_SOURCES}
+set(CHARACTER_COMPONENT_SOURCES
+    src/character_components/can_walk.cpp
     )
+
+set(GAME_SOURCES
+    ${CORE_SOURCES}
+    ${SCENE_SOURCES}
+    ${CHARACTER_SOURCES}
+    ${CHARACTER_COMPONENT_SOURCES}
+)
 
 # Nasty hack making possible to statically link twice
 # This circumvents having to ship huge libgcc and libstd++ lib as dynamic libs

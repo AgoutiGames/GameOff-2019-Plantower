@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="deerIdleDown" tilewidth="256" tileheight="256" tilecount="64" columns="8">
- <image source="deerIdleDown.png" width="2048" height="2048"/>
+<tileset name="goatWalkDownLeft" tilewidth="256" tileheight="256" tilecount="64" columns="8">
+ <image source="goatWalkDownLeft.png" width="2048" height="2048"/>
  <tile id="0" type="ACTOR_ANIMATION">
   <properties>
-   <property name="ACTOR_NAME" value="Deer"/>
-   <property name="ANIMATION_TYPE" value="IDLE"/>
-   <property name="DIRECTION" value="DOWN"/>
+   <property name="ACTOR_NAME" value="Goat"/>
+   <property name="ANIMATION_TYPE" value="WALK"/>
+   <property name="DIRECTION" value="DOWN_LEFT"/>
   </properties>
   <animation>
    <frame tileid="0" duration="25"/>
@@ -68,17 +68,5 @@
    <frame tileid="57" duration="25"/>
    <frame tileid="58" duration="25"/>
   </animation>
- </tile>
- <tile id="1" type="ACTOR_TEMPLATE">
-  <properties>
-   <property name="ACTOR_NAME" value="Deer"/>
-   <property name="ANIMATION_TYPE" value="IDLE"/>
-   <property name="DIRECTION" value="DOWN"/>
-   <property name="type" value="Player"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="110" y="120" width="36" height="40"/>
-   <object id="2" name="ActivateRange" x="0" y="0" width="256" height="256"/>
-  </objectgroup>
  </tile>
 </tileset>

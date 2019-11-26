@@ -1,8 +1,11 @@
 #include "characters/player.hpp"
 
+#include <iostream>
+
 #include "core/game_scene.hpp"
 
 #include "text_ref.hpp"
+#include "characters/tower.hpp"
 
 const char* Player::type = "Player";
 const bool Player::good = GameCharacter::register_class<Player>(Player::type);
@@ -11,58 +14,64 @@ Player::Player(salmon::ActorRef actor, GameScene* scene) : GameCharacter(actor, 
 
 void Player::init() {
     put(m_base_speed, "m_base_speed");
-    register_collisions(false);
+    //register_collisions(false);
     m_scene->get_camera().bind_actor(*this);
 }
 
 void Player::update() {
     const salmon::InputCacheRef input = m_scene->get_input_cache();
-    float x_dir = 0;
-    float y_dir = 0;
+
+    bool moved = true;
+    bool collided = false;
+
     if(input.is_down(m_up_key) || input.is_down(m_up_key_alt)) {
-        y_dir -= 1;
-        if(input.is_down(m_left_key) || input.is_down(m_left_key_alt)) {
-            x_dir -= 1;
-            animate(salmon::AnimationType::walk, salmon::Direction::up_left);
+        if(input.is_down(m_down_key) || input.is_down(m_down_key_alt)) {
+            moved = false;
+        }
+        else if(input.is_down(m_left_key) || input.is_down(m_left_key_alt)) {
+            collided = !walk(salmon::Direction::up_left,m_base_speed);
         }
         else if(input.is_down(m_right_key) || input.is_down(m_right_key_alt)) {
-            x_dir += 1;
-            animate(salmon::AnimationType::walk, salmon::Direction::up_right);
+            collided = !walk(salmon::Direction::up_right,m_base_speed);
         }
         else {
-            animate(salmon::AnimationType::walk, salmon::Direction::up);
+            collided = !walk(salmon::Direction::up,m_base_speed);
         }
     }
     else if(input.is_down(m_down_key) || input.is_down(m_down_key_alt)) {
-        y_dir += 1;
-        if(input.is_down(m_left_key) || input.is_down(m_left_key_alt)) {
-            x_dir -= 1;
-            animate(salmon::AnimationType::walk, salmon::Direction::down_left);
+        if(input.is_down(m_up_key) || input.is_down(m_up_key_alt)) {
+            moved = false;
+        }
+        else if(input.is_down(m_left_key) || input.is_down(m_left_key_alt)) {
+            collided = !walk(salmon::Direction::down_left,m_base_speed);
         }
         else if(input.is_down(m_right_key) || input.is_down(m_right_key_alt)) {
-            x_dir += 1;
-            animate(salmon::AnimationType::walk, salmon::Direction::down_right);
+            collided = !walk(salmon::Direction::down_right,m_base_speed);
         }
         else {
-            animate(salmon::AnimationType::walk, salmon::Direction::down);
+            collided = !walk(salmon::Direction::down,m_base_speed);
         }
     }
     else if(input.is_down(m_left_key) || input.is_down(m_left_key_alt)) {
-        x_dir -= 1;
-        animate(salmon::AnimationType::walk, salmon::Direction::left);
+        collided = !walk(salmon::Direction::left,m_base_speed);
     }
     else if(input.is_down(m_right_key) || input.is_down(m_right_key_alt)) {
-        x_dir += 1;
-        animate(salmon::AnimationType::walk, salmon::Direction::right);
+        collided = !walk(salmon::Direction::right,m_base_speed);
     }
+    else {moved = false;}
 
+    if(!moved) {animate(salmon::AnimationType::idle);}
+    (void) collided;
 
-    // Diagonal walk check
-    if(x_dir && y_dir) {x_dir *= 0.7; y_dir *= 0.7;}
-    if(!x_dir && !y_dir) {animate(salmon::AnimationType::idle);}
-
-    float delta = m_scene->get_delta_time();
-
-    move(x_dir * m_base_speed * delta, y_dir * m_base_speed * delta);
-
+    for(salmon::CollisionRef c : get_collisions()) {
+        //std::cout << "Me: " << c.my_hitbox() << " You: " << c.other_hitbox() << "\n";
+        if(c.my_hitbox() == "ActivateRange" && c.other_hitbox() == "ActivateRange") {
+            if(input.just_pressed("e")) {
+                GameCharacter* character = m_scene->get_character_by_id(c.get_actor_id());
+                Tower* tower = static_cast<Tower*>(character);
+                tower->power_up();
+            }
+        }
+    }
+    clear_collisions();
 }

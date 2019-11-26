@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#ff17ec" nextobjectid="2">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#ff17ec" nextobjectid="19">
  <properties>
   <property name="type" value="Environment"/>
  </properties>
@@ -20,15 +20,71 @@
  <tileset firstgid="837" source="../characters/deer/deerWalkDownRight.tsx"/>
  <tileset firstgid="901" source="../characters/deer/deerWalkUpLeft.tsx"/>
  <tileset firstgid="965" source="../characters/deer/deerWalkUpRight.tsx"/>
+ <tileset firstgid="1029" source="../characters/bug/bugWalkDown.tsx"/>
+ <tileset firstgid="1093" source="../characters/bug/bugWalkRight.tsx"/>
+ <tileset firstgid="1157" source="../characters/bug/bugWalkLeft.tsx"/>
+ <tileset firstgid="1221" source="../characters/bug/bugWalkDownRight.tsx"/>
+ <tileset firstgid="1285" source="../characters/bug/bugWalkDownLeft.tsx"/>
+ <tileset firstgid="1349" source="../characters/bug/bugWalkUp.tsx"/>
+ <tileset firstgid="1413" source="../characters/bug/bugWalkUpLeft.tsx"/>
+ <tileset firstgid="1477" source="../characters/bug/bugWalkUpRight.tsx"/>
+ <tileset firstgid="1541" source="../characters/goat/goatWalkDown.tsx"/>
+ <tileset firstgid="1605" source="../characters/goat/goatWalkDownLeft.tsx"/>
+ <tileset firstgid="1669" source="../characters/goat/goatWalkDownRight.tsx"/>
+ <tileset firstgid="1733" source="../characters/goat/goatWalkLeft.tsx"/>
+ <tileset firstgid="1797" source="../characters/goat/goatWalkRight.tsx"/>
+ <tileset firstgid="1861" source="../characters/goat/goatWalkUp.tsx"/>
+ <tileset firstgid="1925" source="../characters/goat/goatWalkUpLeft.tsx"/>
+ <tileset firstgid="1989" source="../characters/goat/goatWalkUpRight.tsx"/>
+ <tileset firstgid="2053" source="../tilesets/tower/animations/towerBuild.tsx"/>
+ <tileset firstgid="2095" source="../tilesets/rocks.tsx"/>
+ <tileset firstgid="2119" source="../tilesets/trees.tsx"/>
+ <tileset firstgid="2139" source="../tilesets/well.tsx"/>
+ <tileset firstgid="2147" source="../tilesets/tower/tower.tsx"/>
+ <tileset firstgid="2150" source="../tilesets/tower/animations/towerLevel1.tsx"/>
+ <tileset firstgid="2170" source="../tilesets/collision.tsx"/>
+ <tileset firstgid="2186" source="../tilesets/molehill.tsx"/>
+ <tileset firstgid="2190" source="../tilesets/mapObjects/crystalGarden.tsx"/>
+ <tileset firstgid="2191" source="../tilesets/mapObjects/blacksmith.tsx"/>
  <imagelayer name="Background">
   <image source="../background.jpg" width="4096" height="4096"/>
  </imagelayer>
+ <layer name="Collision" width="64" height="64" visible="0" opacity="0.68">
+  <data encoding="base64" compression="zlib">
+   eJztW9luAjEM3Mf9ZqhoCxXQvy4rNcKyEsfHOLsrGClS1QbbEx85XKapjdM8TZ8JY5Qejy01jNT55r8t/sjYHL3OGfwjtu6R//kx5/IYdzY3QxeVm7EmXM+v0ibJTuv46ujM4o9ExI4ef6SuN388/+h+sAZ/Kc8Pj78d/8eHwralHt53wl9T364O27wxsNjz44jFzLWm82/KGPDaFgHS55LczPiMIIN7Ta41Bkbw78lE59atIqfUSQ5tLUSftTg83Fuya3lQzsEc2lpozauejShE7aX7oSQzwp/bG4mlmryova3YuMzP4Y3PGpCyMuJ1i2jlzKvwb6HF33MWknAAy0Mhq2ZznB014GDYh71A86c2F1u9fi97K0Wr1lIcDWuE5n8lNpefa+cpq6wF9K5a41Djc+usBZo/sp5wDvSuWnAV7NecmaT5Wr9Z7sNaWHhpRy0WNJ+R/HaY4z6IrKdnWPhLeWDlvhX+lE+Ev9fONflz9OZLdw2vnZq6Su8OkfdGyqO2b0b85HkLtb5TeHJM0snPYVFflfOIxVcWIHJB4mD9bO8uq7W3Bh6fKN9LQOQqir9XVkQPMlfR/KO9Fs07EdL3aP4WeV77kb635OsI/hqguFtt1fgmWv+8/L33VTT/aP3z8rfEp9deCeWeH9379sp/xL63Zf4Z+96pkXMtGbUa0JKxAHEXpr/TrOUCuk7Sft96f0XEkNZeZAxQ8P6bhIw92svfWgdK7HlzNOOtqsCbsyP5W32ULV+TA7Ueai/XEfZ55HtiYCTQ57MaLO8ho5HxTt9DbT3W6i2POE9yfM/PYQWy14nopyB74tJZqkDT69TqinK31IVI/pT+Jh1RoPh73wU4n+w7PdeL6iVq4l+rs/QjtIPuIwW9+oCKeb4GXEfJCcq5x88aR/R7OL2YyOgdS/roubrwRv6PGkUvlxdkcpfW21sfLIi+DaBygOadpT4gsOb3ZXsj+2yH6Intmf+Wff+q/Olel13/0Pz/AFfVdB0=
+  </data>
+ </layer>
+ <layer name="Objects" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztz7ERABAQRNELlakeDC2rgERyZt5LN9kfAQAAAAAAAAAAAAAAAAAAwCjnrV+2zNbj7/pp9007NM0ErRtQwwNP
+  </data>
+ </layer>
  <layer name="AnimationTest" width="64" height="64" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0jEOgCAQRUHEcDSOxtG4l99YGVuDFjPJCxQUS7KlAAAAAACw2thLmTXtX0/CG2bqaUvjLJeeZmrb832r1znquhn/pGXve/7e7T8AAAAAAAAAAADcHGN6BmU=
+   eJzt0skNwjAUBFAnwUBjrgSJTlya+2Ki5IK4hkXiPWk02Q4/+i4FAAAAgKOMcyktqUlf+7I97+mWjP3+fv3ejLxPP2XHSV1Ts/N0S/e6vR97V/v/a7d9/33JmZiT5bvzcIyRtGRK+ppctGQkdXr9vs5b9/lzM/6SmnPf8u/N+QcAAAAAAAAAAIAnD2snDfM=
   </data>
  </layer>
  <objectgroup name="Characters">
   <object id="1" name="DeerPlayer" gid="2" x="2011.39" y="1512.85" width="256" height="256"/>
+  <object id="5" name="TowerObject" gid="2149" x="2446" y="3359" width="256" height="256"/>
+  <object id="6" name="TowerObject" gid="2149" x="1870" y="3385.33" width="256" height="256"/>
+  <object id="7" name="TowerObject" gid="2149" x="1254.67" y="3437.33" width="256" height="256"/>
+  <object id="8" name="TowerObject" gid="2149" x="946.667" y="3653.33" width="256" height="256"/>
+  <object id="9" name="TowerObject" gid="2149" x="644" y="2794.67" width="256" height="256"/>
+  <object id="10" name="TowerObject" gid="2149" x="685.333" y="2145.33" width="256" height="256"/>
+  <object id="11" name="TowerObject" gid="2149" x="594.667" y="1042.67" width="256" height="256"/>
+  <object id="12" name="TowerObject" gid="2149" x="1602.67" y="1436" width="256" height="256"/>
+  <object id="13" name="TowerObject" gid="2149" x="2146.67" y="2142.67" width="256" height="256"/>
+  <object id="14" name="TowerObject" gid="2149" x="3652" y="2757.33" width="256" height="256"/>
+  <object id="15" name="TowerObject" gid="2149" x="3782.67" y="2018.67" width="256" height="256"/>
+  <object id="16" name="TowerObject" gid="2149" x="3621.33" y="1265.33" width="256" height="256"/>
+  <object id="17" name="TowerObject" gid="2149" x="2762.67" y="1489.33" width="256" height="256"/>
+  <object id="18" name="TowerObject" gid="2149" x="2150.67" y="2796" width="256" height="256"/>
  </objectgroup>
+ <imagelayer name="UI">
+  <image source="../overlay/plantower_overlay.png" width="960" height="720"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
 </map>

@@ -2,11 +2,11 @@
 #define PLAYER_HPP_INCLUDED
 
 #include "core/game_character.hpp"
-#include "actor_ref.hpp"
+#include "character_components/can_walk.hpp"
 
 class GameScene;
 
-class Player : public GameCharacter {
+class Player : public CanWalk {
     public:
         Player(salmon::ActorRef actor, GameScene* scene);
         virtual Player* create(salmon::ActorRef actor, GameScene* scene) const override {return new Player(actor,scene);}
