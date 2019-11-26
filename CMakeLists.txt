@@ -55,10 +55,12 @@ set(CORE_SOURCES
     )
 
 set(SCENE_SOURCES
+    src/scenes/menu.cpp
     src/scenes/environment.cpp
     )
 
 set(CHARACTER_SOURCES
+    src/characters/button.cpp
     src/characters/player.cpp
     src/characters/small_enemy.cpp
     )

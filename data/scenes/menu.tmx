@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#3db827" nextobjectid="4">
+ <properties>
+  <property name="type" value="Menu"/>
+ </properties>
+ <tileset firstgid="1" source="../overlay/Buttons.tsx"/>
+ <objectgroup name="Buttons">
+  <object id="2" name="start_button" gid="3" x="398.424" y="399.182" width="128" height="128"/>
+  <object id="3" name="quit_button" gid="1" x="397.576" y="531.091" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup name="Title">
+  <object id="1" name="Title" x="200" y="64" width="376" height="194">
+   <text fontfamily="Primer Print" pixelsize="96" wrap="1" bold="1" halign="center" valign="center">Plantower</text>
+  </object>
+ </objectgroup>
+</map>
