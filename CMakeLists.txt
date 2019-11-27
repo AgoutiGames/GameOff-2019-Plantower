@@ -63,11 +63,13 @@ set(CHARACTER_SOURCES
     src/characters/button.cpp
     src/characters/player.cpp
     src/characters/tower.cpp
+    src/characters/slave.cpp
     src/characters/small_enemy.cpp
     )
 
 set(CHARACTER_COMPONENT_SOURCES
     src/character_components/can_walk.cpp
+    src/character_components/has_shadow.cpp
     )
 
 set(GAME_SOURCES
