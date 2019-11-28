@@ -61,6 +61,7 @@ set(SCENE_SOURCES
 
 set(CHARACTER_SOURCES
     src/characters/button.cpp
+    src/characters/marker.cpp
     src/characters/player.cpp
     src/characters/tower.cpp
     src/characters/slave.cpp
