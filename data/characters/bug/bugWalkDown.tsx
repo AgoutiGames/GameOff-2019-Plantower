@@ -74,6 +74,12 @@
    <property name="ACTOR_NAME" value="Bug"/>
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="DOWN"/>
+   <property name="base_speed" type="float" value="250"/>
+   <property name="checkpoint1" value="P1_1"/>
+   <property name="checkpoint2" value="P1_2"/>
+   <property name="checkpoint3" value="P1_3"/>
+   <property name="checkpoint4" value="P1_4"/>
+   <property name="type" value="SmallEnemy"/>
   </properties>
  </tile>
 </tileset>

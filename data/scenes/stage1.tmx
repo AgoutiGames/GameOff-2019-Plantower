@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#ff17ec" nextobjectid="19">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#ff17ec" nextobjectid="25">
  <properties>
   <property name="type" value="Environment"/>
  </properties>
@@ -46,26 +46,33 @@
  <tileset firstgid="2186" source="../tilesets/molehill.tsx"/>
  <tileset firstgid="2190" source="../tilesets/mapObjects/crystalGarden.tsx"/>
  <tileset firstgid="2191" source="../tilesets/mapObjects/blacksmith.tsx"/>
- <imagelayer name="Background">
+ <tileset firstgid="2192" source="../tilesets/Marker.tsx"/>
+ <imagelayer name="Background" locked="1">
   <image source="../background.jpg" width="4096" height="4096"/>
  </imagelayer>
- <layer name="Collision" width="64" height="64" visible="0" opacity="0.68">
+ <layer name="Collision" width="64" height="64" visible="0" locked="1" opacity="0.68">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
+ <objectgroup name="Checkpoints">
+  <object id="19" name="P1_1" gid="2192" x="1960.42" y="1283.09" width="64" height="64"/>
+  <object id="20" name="P1_2" gid="2192" x="1847.64" y="1503.88" width="64" height="64"/>
+  <object id="21" name="P1_3" gid="2192" x="1967.76" y="1687.15" width="64" height="64"/>
+  <object id="24" name="P1_4" gid="2192" x="2211.15" y="1710.18" width="64" height="64"/>
+ </objectgroup>
  <layer name="Objects" width="64" height="64">
   <data encoding="base64" compression="zlib">
    eJztz7ERABAQRNELlakeDC2rgERyZt5LN9kfAQAAAAAAAAAAAAAAAAAAwCjnrV+2zNbj7/pp9007NM0ErRtQwwNP
   </data>
  </layer>
- <layer name="AnimationTest" width="64" height="64" visible="0">
+ <layer name="AnimationTest" width="64" height="64" visible="0" locked="1">
   <data encoding="base64" compression="zlib">
    eJzt0skNwjAUBFAnwUBjrgSJTlya+2Ki5IK4hkXiPWk02Q4/+i4FAAAAgKOMcyktqUlf+7I97+mWjP3+fv3ejLxPP2XHSV1Ts/N0S/e6vR97V/v/a7d9/33JmZiT5bvzcIyRtGRK+ppctGQkdXr9vs5b9/lzM/6SmnPf8u/N+QcAAAAAAAAAAIAnD2snDfM=
   </data>
  </layer>
  <objectgroup name="Characters">
-  <object id="1" name="DeerPlayer" gid="2" x="2011.39" y="1512.85" width="256" height="256"/>
+  <object id="1" name="DeerPlayer" gid="2" x="2078.06" y="1624.97" width="256" height="256"/>
   <object id="5" name="TowerObject" gid="2149" x="2446" y="3359" width="256" height="256"/>
   <object id="6" name="TowerObject" gid="2149" x="1870" y="3385.33" width="256" height="256"/>
   <object id="7" name="TowerObject" gid="2149" x="1254.67" y="3437.33" width="256" height="256"/>
@@ -80,8 +87,13 @@
   <object id="16" name="TowerObject" gid="2149" x="3621.33" y="1265.33" width="256" height="256"/>
   <object id="17" name="TowerObject" gid="2149" x="2762.67" y="1489.33" width="256" height="256"/>
   <object id="18" name="TowerObject" gid="2149" x="2150.67" y="2796" width="256" height="256"/>
+  <object id="23" name="TestEnemy" gid="1030" x="2156.91" y="1226.24" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+   </properties>
+  </object>
  </objectgroup>
- <imagelayer name="UI">
+ <imagelayer name="UI" locked="1">
   <image source="../overlay/plantower_overlay.png" width="960" height="720"/>
   <properties>
    <property name="STATIC" type="bool" value="true"/>
