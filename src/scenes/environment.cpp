@@ -11,6 +11,9 @@ Environment::Environment(salmon::MapRef map, SceneManager* scene_manager) :
     GameScene(map,scene_manager) {}
 
 void Environment::init() {
+    // Tested some stuff
+    //m_scene_manager->set_fullscreen(true);
+    //m_scene_manager->set_game_resolution(1920,1080);
     GameScene::init();
 }
 
