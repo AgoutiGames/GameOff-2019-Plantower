@@ -11,7 +11,8 @@ bool HasShadow::init_shadow(std::string character_template_name, std::string lay
     return m_shadow != nullptr;
 }
 void HasShadow::update_shadow() {
-    move(get_x()+m_x_offset,get_y()+m_y_offset);
+    m_shadow->set_animation(get_animation(),get_direction(),get_current_anim_frame());
+    m_shadow->move(get_x()+m_x_offset,get_y()+m_y_offset,true);
 }
 GameCharacter* HasShadow::get_shadow() {
     return m_shadow;

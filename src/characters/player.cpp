@@ -16,6 +16,9 @@ void Player::init() {
     put(m_base_speed, "m_base_speed");
     //register_collisions(false);
     m_scene->get_camera().bind_actor(*this);
+    if(!init_shadow("SHA_Deer", "Shadows",-64,64)) {
+        std::cerr << "Initializing shadow failed\n";
+    }
 }
 
 void Player::update() {
@@ -74,4 +77,6 @@ void Player::update() {
         }
     }
     clear_collisions();
+
+    update_shadow();
 }

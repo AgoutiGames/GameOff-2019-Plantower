@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#ff17ec" nextobjectid="25">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#5a4515" nextobjectid="29">
  <properties>
   <property name="type" value="Environment"/>
  </properties>
@@ -47,6 +47,30 @@
  <tileset firstgid="2190" source="../tilesets/mapObjects/crystalGarden.tsx"/>
  <tileset firstgid="2191" source="../tilesets/mapObjects/blacksmith.tsx"/>
  <tileset firstgid="2192" source="../tilesets/Marker.tsx"/>
+ <tileset firstgid="2193" source="../characters/deer/SHA_deerIdleDown.tsx"/>
+ <tileset firstgid="2257" source="../characters/deer/SHA_deerIdleDownLeft.tsx"/>
+ <tileset firstgid="2321" source="../characters/deer/SHA_deerIdleLeft.tsx"/>
+ <tileset firstgid="2385" source="../characters/deer/SHA_deerIdleRight.tsx"/>
+ <tileset firstgid="2449" source="../characters/deer/SHA_deerIdleUp.tsx"/>
+ <tileset firstgid="2513" source="../characters/deer/SHA_deerIdleUpLeft.tsx"/>
+ <tileset firstgid="2577" source="../characters/deer/SHA_deerIdleUpRight.tsx"/>
+ <tileset firstgid="2641" source="../characters/deer/SHA_deerWalkDown.tsx"/>
+ <tileset firstgid="2705" source="../characters/deer/SHA_deerWalkDownLeft.tsx"/>
+ <tileset firstgid="2769" source="../characters/deer/SHA_deerWalkDownRight.tsx"/>
+ <tileset firstgid="2833" source="../characters/deer/SHA_deerWalkLeft.tsx"/>
+ <tileset firstgid="2897" source="../characters/deer/SHA_deerWalkRight.tsx"/>
+ <tileset firstgid="2961" source="../characters/deer/SHA_deerWalkUp.tsx"/>
+ <tileset firstgid="3025" source="../characters/deer/SHA_deerWalkUpLeft.tsx"/>
+ <tileset firstgid="3089" source="../characters/deer/SHA_deerWalkUpRight.tsx"/>
+ <tileset firstgid="3153" source="../characters/deer/SHA_deerIdleDownRight.tsx"/>
+ <tileset firstgid="3217" source="../characters/goat/SHA_goatWalkDown.tsx"/>
+ <tileset firstgid="3281" source="../characters/goat/SHA_goatWalkDownLeft.tsx"/>
+ <tileset firstgid="3345" source="../characters/goat/SHA_goatWalkDownRight.tsx"/>
+ <tileset firstgid="3409" source="../characters/goat/SHA_goatWalkLeft.tsx"/>
+ <tileset firstgid="3473" source="../characters/goat/SHA_goatWalkRight.tsx"/>
+ <tileset firstgid="3537" source="../characters/goat/SHA_goatWalkUp.tsx"/>
+ <tileset firstgid="3601" source="../characters/goat/SHA_goatWalkUpLeft.tsx"/>
+ <tileset firstgid="3665" source="../characters/goat/SHA_goatWalkUpRight.tsx"/>
  <imagelayer name="Background" locked="1">
   <image source="../background.jpg" width="4096" height="4096"/>
  </imagelayer>
@@ -68,9 +92,10 @@
  </layer>
  <layer name="AnimationTest" width="64" height="64" visible="0" locked="1">
   <data encoding="base64" compression="zlib">
-   eJzt0skNwjAUBFAnwUBjrgSJTlya+2Ki5IK4hkXiPWk02Q4/+i4FAAAAgKOMcyktqUlf+7I97+mWjP3+fv3ejLxPP2XHSV1Ts/N0S/e6vR97V/v/a7d9/33JmZiT5bvzcIyRtGRK+ppctGQkdXr9vs5b9/lzM/6SmnPf8u/N+QcAAAAAAAAAAIAnD2snDfM=
+   eJzt0sFtwjAYQGET6pZSiuShPEBmQGITD+ChPIA36ouSS9UrwZV4n/RkDDn8xglBkiRJkh6vXkLolL5DmKlSp3Rlfx093f7my+gJxprP3Dl1Sl/sqVKn9AL/TT1x1q30yfmpUqd0Hj2d9tbeQ8gUqSzrx/p9Yc3Utv39NG5G7ae8cccUlyJ3zppZS1x/b9savf+Xdtvuvxx5JyY6jp1Hj9Eo04HKEh8yNYqHv8/HaV3L9LwZ/5PIe585e/b9lyRJkiRJkiRJkiRJkiTplx9CbRps
   </data>
  </layer>
+ <objectgroup name="Shadows"/>
  <objectgroup name="Characters">
   <object id="1" name="DeerPlayer" gid="2" x="2100.06" y="1466.97" width="128" height="128"/>
   <object id="5" name="TowerObject" gid="2149" x="2446" y="3359" width="256" height="256"/>

@@ -3,10 +3,11 @@
 
 #include "core/game_character.hpp"
 #include "character_components/can_walk.hpp"
+#include "character_components/has_shadow.hpp"
 
 class GameScene;
 
-class Player : public CanWalk {
+class Player : public CanWalk, HasShadow {
     public:
         Player(salmon::ActorRef actor, GameScene* scene);
         virtual Player* create(salmon::ActorRef actor, GameScene* scene) const override {return new Player(actor,scene);}
