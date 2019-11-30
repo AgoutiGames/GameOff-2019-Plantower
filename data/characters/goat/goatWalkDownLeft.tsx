@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="goatWalkDownLeft" tilewidth="256" tileheight="256" tilecount="64" columns="8">
- <image source="goatWalkDownLeft.png" width="2048" height="2048"/>
+<tileset name="goatWalkDownLeft" tilewidth="128" tileheight="128" tilecount="64" columns="8">
+ <image source="goatWalkDownLeft.png" width="1024" height="1024"/>
  <tile id="0" type="ACTOR_ANIMATION">
   <properties>
    <property name="ACTOR_NAME" value="Goat"/>
