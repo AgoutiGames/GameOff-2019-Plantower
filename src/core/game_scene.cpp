@@ -8,6 +8,8 @@
 
 #include "scenes/environment.hpp"
 
+const char* GameScene::type_string = "type";
+
 GameScene::GameScene(salmon::MapRef map, SceneManager* scene_manager)
 : salmon::MapRef(map), m_scene_manager{scene_manager} {}
 
@@ -61,7 +63,9 @@ bool GameScene::remove_character_internal(GameCharacter* game_character) {
 void GameScene::update() {
     trigger_add();
     trigger_kill();
-    for(auto& c : m_characters) {c->update();}
+    for(auto& c : m_characters) {
+        if(!c->suspended()) {c->update();}
+    }
 }
 
 void GameScene::remove_character(GameCharacter* game_character) {
@@ -77,7 +81,7 @@ void GameScene::trigger_kill() {
     if(!m_kill_characters.empty()) {
         for(GameCharacter* to_kill : m_kill_characters) {
             if(!remove_character_internal(to_kill)) {
-                std::cerr << "Failed to remove character: \"" << to_kill->get_name() << "\"\n";
+                std::cerr << "Failed to remove character, possibly removed twice!\n";
             }
         }
         m_kill_characters.clear();
@@ -125,7 +129,7 @@ bool GameScene::put(std::string& var, std::string name) {
 }
 
 GameScene* GameScene::parse_scene(salmon::MapRef map, SceneManager* scene_manager) {
-    std::string type = map.get_data().get_val_string("type");
+    std::string type = map.get_data().get_val_string(type_string);
     if(get_dict().find(type) == get_dict().end()) {
         std::cerr << "Unknown Game Scene type: " << type << " supplied!\n";
         return nullptr;
@@ -166,6 +170,9 @@ GameCharacter* GameScene::get_character_by_id(unsigned id) {
         if(c->get_id() == id) {return c.get();}
     }
     return nullptr;
+}
+GameCharacter* GameScene::get_character_by_type(std::string type) {
+    return get_character_by_attribute(GameCharacter::type_string, type);
 }
 GameCharacter* GameScene::get_character_by_template_type(std::string template_type) {
     std::vector<GameCharacter*> characters = get_characters_by_template_type(template_type);
@@ -219,6 +226,9 @@ std::vector<GameCharacter*> GameScene::get_characters_by_layer(std::string name)
         if(c->get_layer() == name) {characters.push_back(c.get());}
     }
     return characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_type(std::string type) {
+    return get_characters_by_attribute(GameCharacter::type_string, type);
 }
 std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {
     std::vector<GameCharacter*> characters;
@@ -281,6 +291,9 @@ std::vector<GameCharacter*> GameScene::filter_characters_by_layer(std::vector<Ga
         if(c->get_layer() == name) {characters.push_back(c);}
     }
     return ncharacters;
+}
+std::vector<GameCharacter*> GameScene::filter_characters_by_type(std::vector<GameCharacter*> characters, std::string type) {
+    return filter_characters_by_attribute(characters, GameCharacter::type_string, type);
 }
 std::vector<GameCharacter*> GameScene::filter_characters_by_template_type(std::vector<GameCharacter*> characters, std::string template_type) {
     std::vector<GameCharacter*> ncharacters;

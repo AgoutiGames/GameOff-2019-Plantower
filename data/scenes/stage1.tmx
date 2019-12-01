@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#5a4515" nextobjectid="29">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#5a4515" nextobjectid="49">
  <properties>
   <property name="type" value="Environment"/>
  </properties>
@@ -71,28 +71,53 @@
  <tileset firstgid="3537" source="../characters/goat/SHA_goatWalkUp.tsx"/>
  <tileset firstgid="3601" source="../characters/goat/SHA_goatWalkUpLeft.tsx"/>
  <tileset firstgid="3665" source="../characters/goat/SHA_goatWalkUpRight.tsx"/>
+ <tileset firstgid="3729" source="../tilesets/projectile.tsx"/>
+ <tileset firstgid="3733" source="../characters/deer/deerFightDown.tsx"/>
+ <tileset firstgid="3763" source="../characters/deer/deerFightDownLeft.tsx"/>
+ <tileset firstgid="3793" source="../characters/deer/deerFightDownRight.tsx"/>
+ <tileset firstgid="3823" source="../characters/deer/deerFightLeft.tsx"/>
+ <tileset firstgid="3853" source="../characters/deer/deerFightRight.tsx"/>
+ <tileset firstgid="3883" source="../characters/deer/deerFightUp.tsx"/>
+ <tileset firstgid="3913" source="../characters/deer/deerFightUpRight.tsx"/>
+ <tileset firstgid="3943" source="../characters/deer/deerFightUpLeft.tsx"/>
+ <tileset firstgid="3973" source="../characters/deer/SHA_deerFightDown.tsx"/>
+ <tileset firstgid="4003" source="../characters/deer/SHA_deerFightDownLeft.tsx"/>
+ <tileset firstgid="4033" source="../characters/deer/SHA_deerFightDownRight.tsx"/>
+ <tileset firstgid="4063" source="../characters/deer/SHA_deerFightLeft.tsx"/>
+ <tileset firstgid="4093" source="../characters/deer/SHA_deerFightRight.tsx"/>
+ <tileset firstgid="4123" source="../characters/deer/SHA_deerFightUp.tsx"/>
+ <tileset firstgid="4153" source="../characters/deer/SHA_deerFightUpRight.tsx"/>
+ <tileset firstgid="4183" source="../characters/deer/SHA_deerFightUpLeft.tsx"/>
  <imagelayer name="Background" locked="1">
   <image source="../background.jpg" width="4096" height="4096"/>
  </imagelayer>
  <layer name="Collision" width="64" height="64" visible="0" locked="1" opacity="0.68">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Checkpoints">
-  <object id="19" name="P1_1" gid="2192" x="1960.42" y="1283.09" width="64" height="64"/>
-  <object id="20" name="P1_2" gid="2192" x="1847.64" y="1503.88" width="64" height="64"/>
-  <object id="21" name="P1_3" gid="2192" x="1967.76" y="1687.15" width="64" height="64"/>
-  <object id="24" name="P1_4" gid="2192" x="2211.15" y="1710.18" width="64" height="64"/>
+  <object id="19" name="P1_1" gid="2192" x="254.359" y="395.211" width="64" height="64"/>
+  <object id="20" name="P1_2" gid="2192" x="659.761" y="1728.12" width="64" height="64"/>
+  <object id="21" name="P1_3" gid="2192" x="558.669" y="2790.18" width="64" height="64"/>
+  <object id="24" name="P1_4" gid="2192" x="1399.03" y="3770.79" width="64" height="64"/>
+  <object id="29" name="P2_4" gid="2192" x="2077.09" y="3649.82" width="64" height="64"/>
+  <object id="31" name="P2_2" gid="2192" x="2095.18" y="1694.24" width="64" height="64"/>
+  <object id="32" name="P2_3" gid="2192" x="2140.73" y="2471.03" width="64" height="64"/>
+  <object id="33" name="P2_1" gid="2192" x="2031.64" y="434.667" width="64" height="64"/>
+  <object id="34" name="P3_1" gid="2192" x="3824" y="725" width="64" height="64"/>
+  <object id="35" name="P3_2" gid="2192" x="3988" y="1604" width="64" height="64"/>
+  <object id="36" name="P3_3" gid="2192" x="3864" y="2830" width="64" height="64"/>
+  <object id="37" name="P3_4" gid="2192" x="2752" y="3876" width="64" height="64"/>
  </objectgroup>
  <layer name="Objects" width="64" height="64">
   <data encoding="base64" compression="zlib">
    eJztz7ERABAQRNELlakeDC2rgERyZt5LN9kfAQAAAAAAAAAAAAAAAAAAwCjnrV+2zNbj7/pp9007NM0ErRtQwwNP
   </data>
  </layer>
- <layer name="AnimationTest" width="64" height="64" visible="0" locked="1">
+ <layer name="AnimationTest" width="64" height="64" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0sFtwjAYQGET6pZSiuShPEBmQGITD+ChPIA36ouSS9UrwZV4n/RkDDn8xglBkiRJkh6vXkLolL5DmKlSp3Rlfx093f7my+gJxprP3Dl1Sl/sqVKn9AL/TT1x1q30yfmpUqd0Hj2d9tbeQ8gUqSzrx/p9Yc3Utv39NG5G7ae8cccUlyJ3zppZS1x/b9savf+Xdtvuvxx5JyY6jp1Hj9Eo04HKEh8yNYqHv8/HaV3L9LwZ/5PIe585e/b9lyRJkiRJkiRJkiRJkiTplx9CbRps
+   eJzt1sFNwzAYhmE3xVBKm+IzIzABA/jAMScGQIJJPICROgEjMAEHD+AJGIEJkPiiWAKpcEuwSt5HevU3bVTZdQ41BgAAAADGFzfGZOW2xnQqqqxcq+v2676n9vfvOGbdpvYK6urWOnOVlbvQtYoqKzeD3yautNeSO9f+VVRZuXXt1WFq6dQYr6wK/Twb3g+aXqVy/bCqt0ZMJ5zojJXtszpzTa8Z7PB5KtNy/rN2X84/LPVMNGpZdz0YR1JeLVTo0wuvkrKLw/ttM8zQ/N0ap7TX//oXldW72u6MuVa36nF3eL/Vc++1d8/zf/RCOd/nMl9/OO//7K3s96PMq8t6a6nl5tue72a4fwAAAAAAAAAAAAAAAGBsn0h5JFs=
   </data>
  </layer>
  <objectgroup name="Shadows"/>
@@ -112,14 +137,127 @@
   <object id="16" name="TowerObject" gid="2149" x="3621.33" y="1265.33" width="256" height="256"/>
   <object id="17" name="TowerObject" gid="2149" x="2762.67" y="1489.33" width="256" height="256"/>
   <object id="18" name="TowerObject" gid="2149" x="2150.67" y="2796" width="256" height="256"/>
-  <object id="23" name="TestEnemy" gid="1030" x="2156.91" y="1226.24" width="128" height="128">
+  <object id="23" name="SmallEnemy1" gid="1030" x="18.607" y="184.664" width="128" height="128">
    <properties>
     <property name="base_speed" type="float" value="100"/>
    </properties>
   </object>
+  <object id="38" name="SmallEnemy2" gid="1030" x="147.515" y="230.182" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+   </properties>
+  </object>
+  <object id="40" name="SmallEnemy4" gid="1030" x="1832" y="114" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+    <property name="checkpoint1" value="P2_1"/>
+    <property name="checkpoint2" value="P2_2"/>
+    <property name="checkpoint3" value="P2_3"/>
+    <property name="checkpoint4" value="P2_4"/>
+   </properties>
+  </object>
+  <object id="41" name="SmallEnemy5" gid="1030" x="2010.09" y="154.394" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+    <property name="checkpoint1" value="P2_1"/>
+    <property name="checkpoint2" value="P2_2"/>
+    <property name="checkpoint3" value="P2_3"/>
+    <property name="checkpoint4" value="P2_4"/>
+   </properties>
+  </object>
+  <object id="43" name="SmallEnemy7" gid="1030" x="3773.27" y="572.182" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+    <property name="checkpoint1" value="P3_1"/>
+    <property name="checkpoint2" value="P3_2"/>
+    <property name="checkpoint3" value="P3_3"/>
+    <property name="checkpoint4" value="P3_4"/>
+   </properties>
+  </object>
+  <object id="44" name="SmallEnemy8" gid="1030" x="3946" y="583" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+    <property name="checkpoint1" value="P3_1"/>
+    <property name="checkpoint2" value="P3_2"/>
+    <property name="checkpoint3" value="P3_3"/>
+    <property name="checkpoint4" value="P3_4"/>
+   </properties>
+  </object>
+  <object id="45" name="SmallEnemy9" gid="1030" x="3991.09" y="710.364" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="100"/>
+    <property name="checkpoint1" value="P3_1"/>
+    <property name="checkpoint2" value="P2_2"/>
+    <property name="checkpoint3" value="P2_3"/>
+    <property name="checkpoint4" value="P2_4"/>
+   </properties>
+  </object>
+  <object id="46" name="TowerObject" gid="2149" x="2856" y="3622" width="256" height="256"/>
+  <object id="47" name="SmallEnemy6" gid="1542" x="2141.33" y="308" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="170"/>
+    <property name="checkpoint1" value="P2_1"/>
+    <property name="checkpoint2" value="P2_2"/>
+    <property name="checkpoint3" value="P2_3"/>
+    <property name="checkpoint4" value="P2_4"/>
+    <property name="type" value="SmallEnemyAlt"/>
+   </properties>
+  </object>
+  <object id="48" name="SmallEnemy3" gid="1542" x="290" y="269" width="128" height="128">
+   <properties>
+    <property name="base_speed" type="float" value="170"/>
+    <property name="checkpoint1" value="P1_1"/>
+    <property name="checkpoint2" value="P1_2"/>
+    <property name="checkpoint3" value="P1_3"/>
+    <property name="checkpoint4" value="P1_4"/>
+    <property name="type" value="SmallEnemyAlt"/>
+   </properties>
+  </object>
  </objectgroup>
  <imagelayer name="UI" locked="1">
-  <image source="../overlay/plantower_overlay.png" width="960" height="720"/>
+  <image source="../overlay/plantower_overlay3.png" width="2304" height="1296"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Life" offsetx="155.227" offsety="-6.72727">
+  <image source="../overlay/life100.png" width="160" height="160"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Bildebene 4" offsetx="884" offsety="12.6667">
+  <image source="../overlay/ringActive.png" width="160" height="143"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Bildebene 5" offsetx="1071.7" offsety="13.1515">
+  <image source="../overlay/ringActive.png" width="160" height="143"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Bildebene 6" offsetx="1261.33" offsety="14.6667">
+  <image source="../overlay/ringActive.png" width="160" height="143"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Bildebene 7" offsetx="1306.67" offsety="36.6667">
+  <image source="../overlay/seed.png" width="70" height="70"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Bildebene 8" offsetx="1116" offsety="40">
+  <image source="../overlay/waterFull.png" width="70" height="70"/>
+  <properties>
+   <property name="STATIC" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="Bildebene 9" offsetx="928" offsety="38">
+  <image source="../overlay/crystal.png" width="70" height="70"/>
   <properties>
    <property name="STATIC" type="bool" value="true"/>
   </properties>

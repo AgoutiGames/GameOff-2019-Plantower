@@ -29,6 +29,7 @@ class GameScene : public salmon::MapRef {
 
         GameCharacter* get_character_by_name(std::string name);
         GameCharacter* get_character_by_id(unsigned id);
+        GameCharacter* get_character_by_type(std::string type);
         GameCharacter* get_character_by_template_type(std::string template_type);
         GameCharacter* get_character_by_attribute(std::string name, bool attribute);
         GameCharacter* get_character_by_attribute(std::string name, int attribute);
@@ -40,6 +41,7 @@ class GameScene : public salmon::MapRef {
 
         std::vector<GameCharacter*> get_characters_by_name(std::string name);
         std::vector<GameCharacter*> get_characters_by_layer(std::string name);
+        std::vector<GameCharacter*> get_characters_by_type(std::string type);
         std::vector<GameCharacter*> get_characters_by_template_type(std::string template_type);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, bool attribute);
         std::vector<GameCharacter*> get_characters_by_attribute(std::string name, int attribute);
@@ -51,6 +53,7 @@ class GameScene : public salmon::MapRef {
 
         std::vector<GameCharacter*> filter_characters_by_name(std::vector<GameCharacter*> characters, std::string name);
         std::vector<GameCharacter*> filter_characters_by_layer(std::vector<GameCharacter*> characters, std::string name);
+        std::vector<GameCharacter*> filter_characters_by_type(std::vector<GameCharacter*> characters, std::string template_type);
         std::vector<GameCharacter*> filter_characters_by_template_type(std::vector<GameCharacter*> characters, std::string template_type);
         std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, bool attribute);
         std::vector<GameCharacter*> filter_characters_by_attribute(std::vector<GameCharacter*> characters, std::string name, int attribute);
@@ -84,6 +87,8 @@ class GameScene : public salmon::MapRef {
         void shutdown_game();
         void next_scene(std::string map_filename);
 
+        static const char* type_string;
+
     protected:
         SceneManager* m_scene_manager;
         std::vector<std::unique_ptr<GameCharacter>> m_characters;
@@ -103,13 +108,17 @@ class GameScene : public salmon::MapRef {
 template <class T>
 std::vector<T*> GameScene::filter_characters(std::vector<GameCharacter*> characters) {
     std::vector<T*> new_characters;
-    for(auto c : characters) {new_characters.push_back(static_cast<T*>(c));}
+    for(GameCharacter* c : characters) {
+        if(c->type() == T::type) {
+            new_characters.push_back(static_cast<T*>(c));
+        }
+    }
     return new_characters;
 }
 
 template <class T>
 std::vector<T*> GameScene::get_characters() {
-    std::vector<GameCharacter*> characters = get_characters_by_attribute("type",T::type);
+    std::vector<GameCharacter*> characters = get_characters_by_type(T::type);
     std::vector<T*> new_characters;
     for(auto c : characters) {new_characters.push_back(static_cast<T*>(c));}
     return new_characters;

@@ -22,12 +22,20 @@ class GameCharacter : public salmon::ActorRef {
         bool put(float& var, std::string name);
         bool put(std::string& var, std::string name);
 
+        bool suspended() {return m_suspended;}
+        void suspend() {m_suspended = true;}
+        void unsuspend() {m_suspended = false;}
+
+        std::string type();
+        static const char* type_string;
+
     protected:
         GameScene* m_scene;
 
         template <class T>
         static bool register_class(std::string type);
     private:
+        bool m_suspended = false;
         static std::map<std::string, GameCharacter*>& get_dict();
 };
 

@@ -1,20 +1,37 @@
 #include "scenes/environment.hpp"
 
-#include "core/scene_manager.hpp"
+#include <string>
+#include <sstream>
+#include <cstdlib>
+#include <time.h>
 
+#include "core/scene_manager.hpp"
 #include "characters/player.hpp"
 
 const char* Environment::type = "Environment";
 const bool Environment::good = GameScene::register_class<Environment>(Environment::type);
 
+float Environment::enemy_cooldown = 1;
+
 Environment::Environment(salmon::MapRef map, SceneManager* scene_manager) :
     GameScene(map,scene_manager) {}
 
 void Environment::init() {
-    // Tested some stuff
-    //m_scene_manager->set_fullscreen(true);
-    //m_scene_manager->set_game_resolution(1920,1080);
+    m_scene_manager->set_window_size(960,540);
+    m_scene_manager->set_game_resolution(1920 * 1.2, 1080 * 1.2);
+    m_scene_manager->set_fullscreen(m_fullscreen);
+
     GameScene::init();
+    std::string enemy_name = "SmallEnemy";
+    for(int i = 1; i <= 9; i++) {
+        std::stringstream name;
+        name << enemy_name << i;
+        GameCharacter* e = get_character_by_name(name.str());
+        e->suspend();
+        e->set_hidden(true);
+        m_small_enemies.push_back(e);
+    }
+    srand(time(NULL));
 }
 
 void Environment::update() {
@@ -22,30 +39,22 @@ void Environment::update() {
     if(input.just_pressed("Escape")) {
         m_scene_manager->next_scene("menu.tmx");
     }
-/*
-    salmon::CameraRef cam = get_camera();
-    if(input.is_down("d")) {
-        cam.set_x(cam.get_x()+10);
+    if(input.just_pressed("f")) {
+        if(m_fullscreen) {
+            m_fullscreen = false;
+        }
+        else {m_fullscreen = true;}
+        m_scene_manager->set_fullscreen(m_fullscreen);
     }
-    if(input.is_down("s")) {
-        cam.set_y(cam.get_y()+10);
+    if(m_current_enemy_cooldown <= 0) {
+        int chosen_enemy = rand() % m_small_enemies.size();
+        GameCharacter* c = m_small_enemies.at(chosen_enemy);
+        c = add_character(c, c->get_layer(),c->get_name() + "Generated");
+        c->set_hidden(false);
+        m_current_enemy_cooldown = enemy_cooldown;
     }
-    if(input.is_down("a")) {
-        cam.set_x(cam.get_x()-10);
+    else {
+        m_current_enemy_cooldown -= get_delta_time();
     }
-    if(input.is_down("w")) {
-        cam.set_y(cam.get_y()-10);
-    }
-    cam.update();
-*/
-    /*
-    Player* p = get_character<Player>();
-    if(p) {p->move(1,0);}
-
-    if(input.just_pressed("p"))  {
-        GameCharacter* p = get_character_by_name("Player");
-        remove_character(p);
-    }*/
-
     GameScene::update();
 }

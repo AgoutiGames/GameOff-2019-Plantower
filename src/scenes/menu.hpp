@@ -20,6 +20,7 @@ class Menu : public GameScene {
         static const char* type;
     protected:
         // Add members here
+        salmon::MusicRef m_bg_music;
 
     private:
         static const bool good;

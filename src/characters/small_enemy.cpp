@@ -35,6 +35,7 @@ void SmallEnemy::init() {
         current_marker_var_name.str(std::string());
         checkpoint_name = std::string();
     }
+    register_collisions(false);
 }
 
 void SmallEnemy::update() {

@@ -66,6 +66,8 @@ set(CHARACTER_SOURCES
     src/characters/tower.cpp
     src/characters/slave.cpp
     src/characters/small_enemy.cpp
+    src/characters/small_enemy_alt.cpp
+    src/characters/projectile.cpp
     )
 
 set(CHARACTER_COMPONENT_SOURCES
@@ -84,6 +86,8 @@ set(GAME_SOURCES
 # This circumvents having to ship huge libgcc and libstd++ lib as dynamic libs
 if(CMAKE_SYSTEM_NAME STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-allow-multiple-definition")
+    # Surpress cmd window for windows builds
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-subsystem,windows")
 endif()
 
 add_executable(${PROJECT_NAME} ${GAME_SOURCES})

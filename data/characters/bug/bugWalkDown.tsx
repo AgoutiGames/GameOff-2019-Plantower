@@ -7,6 +7,7 @@
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="DOWN"/>
   </properties>
+  <objectgroup draworder="index"/>
   <animation>
    <frame tileid="0" duration="25"/>
    <frame tileid="1" duration="25"/>
@@ -81,5 +82,8 @@
    <property name="checkpoint4" value="P1_4"/>
    <property name="type" value="SmallEnemy"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="40" y="40" width="50" height="50"/>
+  </objectgroup>
  </tile>
 </tileset>

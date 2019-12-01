@@ -7,7 +7,7 @@
 
 class GameScene;
 
-class SmallEnemy : public GameCharacter {
+class SmallEnemy : public virtual GameCharacter {
     public:
         SmallEnemy(salmon::ActorRef actor, GameScene* scene);
         virtual SmallEnemy* create(salmon::ActorRef actor, GameScene* scene) const override {return new SmallEnemy(actor,scene);}

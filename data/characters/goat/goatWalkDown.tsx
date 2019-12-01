@@ -75,5 +75,8 @@
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="DOWN"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="41" y="79" width="36" height="55"/>
+  </objectgroup>
  </tile>
 </tileset>

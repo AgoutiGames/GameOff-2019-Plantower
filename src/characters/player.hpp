@@ -29,6 +29,8 @@ class Player : public CanWalk, HasShadow {
         std::string m_up_key_alt = "w";
         std::string m_down_key_alt = "s";
 
+        bool m_attack = false;
+
         float m_base_speed = 250;
         float m_current_speed = 250;
 };

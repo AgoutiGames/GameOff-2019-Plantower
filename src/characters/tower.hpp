@@ -18,6 +18,10 @@ class Tower : public GameCharacter {
         static const char* type;
     protected:
         // Add members here
+        static constexpr float firing_distance = 400; // Pixels
+        static constexpr float cooldown = 0.8; // Seconds
+        float m_current_cooldown = 0;
+
 
     private:
         enum {

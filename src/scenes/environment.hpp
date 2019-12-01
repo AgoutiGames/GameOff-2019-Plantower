@@ -12,6 +12,13 @@ class Environment : public GameScene {
         void update() override;
 
         static const char* type;
+    protected:
+        std::vector<GameCharacter*> m_small_enemies;
+
+        bool m_fullscreen = false;
+
+        static float enemy_cooldown;
+        float m_current_enemy_cooldown = 0;
     private:
         static const bool good;
 };

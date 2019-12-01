@@ -17,7 +17,8 @@ void Menu::init() {
     // Initializes all characters in scene
     GameScene::init();
     // Setup member vars here | example: put(m_speed, "m_speed");
-
+    m_bg_music = get_audio_manager().get_music("./music/planTower_main.flac");
+    if(!m_bg_music.playing()) {m_bg_music.play();}
 }
 
 void Menu::update() {
@@ -36,6 +37,7 @@ void Menu::button_pressed(std::string id) {
         m_scene_manager->shutdown();
     }
     else if(id == "Start") {
+        m_bg_music.set_volume(0.15);
         m_scene_manager->next_scene("stage1.tmx");
     }
     else {
