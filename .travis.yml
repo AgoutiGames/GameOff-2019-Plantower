@@ -1,0 +1,35 @@
+dist: bionic
+sudo: required
+language: cpp
+compiler: gcc
+env:
+- CONFIG=Release PLATFORM=linux   BIT=64
+- CONFIG=Release PLATFORM=linux   BIT=32
+- CONFIG=Release PLATFORM=windows BIT=64
+- CONFIG=Release PLATFORM=windows BIT=32
+
+- CONFIG=Debug PLATFORM=linux   BIT=64
+- CONFIG=Debug PLATFORM=linux   BIT=32
+- CONFIG=Debug PLATFORM=windows BIT=64
+- CONFIG=Debug PLATFORM=windows BIT=32
+
+install:
+- sudo apt-get update
+- sudo ./scripts/fetch_dev_dependencies.sh
+script:
+- ./scripts/compile.sh
+before_deploy:
+- ./scripts/pack_artifacts.sh
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file_glob: true
+  prerelease: true
+  api_key:
+    secure: SCwTkZV/DaUvAq/hE+Hprh0WYFt5fQDsAK3rWeN/fygt4iT7GgNkZJWZJjIeT7T0j+IByyLl93NT1F6ShBeA4SfuEtH/izBvsGHa8OUjuUCbkWDmu1DYFwkrAmuXsUnd2w9y/02j8L9yil1Qmw6zZ4XlQQ2sVZNwN/YyJEfGaa6EVcvdPwwXw7veoZ7XhHTyPCKeaeb1JpLjZrnCWqsghCmK3kYxgrsKzADYQ0GEAD+EnB7/C8EGBiH3jSRU0apDxsa4mRU770tHho2TOESH28SF0aiA8zca8pF4xVhZsm2jmkzdl0A9Y5AnWL5nKGi/0ymQEg7QHIfhuUlqZ42g3ajZCrHzCedcEL3+TsktznAhih8ptipYhPrEAgZTDt+U6GFS0j1thPVgwFWNqdGMcRBbgek632e23fRkCp8wbiMV92qWj7+ib6CYMOJBeIgm51Y+d4d/Q2yFekqxEfHr1WOobGFBvxmbtPIhXzHQh7gn+AkO7OqzA2xdG5WGjFL1mV86fmGUHGp1nwgu7oq2C4DV99RWqyBvm8HO3Lerc2eeV1jtwc0JuLMKCgFuxJkFUU2ZP+y95PV53DJOfWIJplEGAtdpM45AhXx25uHDf3t+oxhIQ2KOkMlFbOSI0kj6No4Y5EPDbSn0ZtkeDkud4Pr8ZeMvPaW0ZgvbFUsEiM4=
+  file: Plantower*
+  on:
+    tags: true
+    condition: $CONFIG = Release
+    branch: master
+    repo: AgoutiGames/GameOff-2019-Plantower
