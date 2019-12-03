@@ -1,7 +1,11 @@
 #include "characters/small_enemy_alt.hpp"
 
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <cmath>
+
 #include "core/game_scene.hpp"
-#include "iostream"
 
 const char* SmallEnemyAlt::type = "SmallEnemyAlt";
 const bool SmallEnemyAlt::good = GameCharacter::register_class<SmallEnemyAlt>(SmallEnemyAlt::type);

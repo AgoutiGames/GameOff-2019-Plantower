@@ -18,6 +18,9 @@ class SmallEnemyAlt : public SmallEnemy, HasShadow {
         static const char* type;
     protected:
         // Add members here
+        float m_base_speed = 250;
+        std::vector<Marker*> m_markers;
+        unsigned m_current_marker = 0;
 
     private:
         static const bool good;

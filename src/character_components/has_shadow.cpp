@@ -4,6 +4,12 @@
 
 #include "core/game_scene.hpp"
 
+HasShadow::~HasShadow() {
+    if(m_shadow != nullptr) {
+        m_scene->remove_character(m_shadow);
+    }
+}
+
 bool HasShadow::init_shadow(std::string character_template_name, std::string layer_name, float x_offset, float y_offset) {
     m_shadow = m_scene->add_character(character_template_name,layer_name, get_name()+"Shadow");
     m_x_offset = x_offset;

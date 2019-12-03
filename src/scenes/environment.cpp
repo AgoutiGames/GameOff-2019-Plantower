@@ -18,7 +18,7 @@ Environment::Environment(salmon::MapRef map, SceneManager* scene_manager) :
 
 void Environment::init() {
     m_scene_manager->set_window_size(960,540);
-    m_scene_manager->set_game_resolution(1920 * 1.2, 1080 * 1.2);
+    m_scene_manager->set_game_resolution(1920 * m_zoom_level, 1080 * m_zoom_level);
     m_scene_manager->set_fullscreen(m_fullscreen);
 
     GameScene::init();
@@ -56,5 +56,15 @@ void Environment::update() {
     else {
         m_current_enemy_cooldown -= get_delta_time();
     }
+
+    salmon::MouseState mouse = input.get_mouse_state();
+    if(mouse.y_scroll != 0) {
+        m_zoom_level += 0.1 * mouse.y_scroll;
+        if(m_zoom_level < 0.5) {m_zoom_level = 0.5;}
+        if(m_zoom_level > 2) {m_zoom_level = 2;}
+        m_scene_manager->set_game_resolution(1920 * m_zoom_level, 1080 * m_zoom_level);
+        get_camera().update();
+    }
+
     GameScene::update();
 }

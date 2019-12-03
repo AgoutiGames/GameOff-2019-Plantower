@@ -15,6 +15,8 @@ class SceneManager;
 
 class GameScene : public salmon::MapRef {
     public:
+        friend class SceneManager;
+
         GameScene(salmon::MapRef map, SceneManager* scene_manager);
         static GameScene* parse_scene(salmon::MapRef map, SceneManager* scene_manager);
 
@@ -26,6 +28,8 @@ class GameScene : public salmon::MapRef {
         bool put(int& var, std::string name);
         bool put(float& var, std::string name);
         bool put(std::string& var, std::string name);
+
+        bool is_valid(GameCharacter* character) const;
 
         GameCharacter* get_character_by_name(std::string name);
         GameCharacter* get_character_by_id(unsigned id);

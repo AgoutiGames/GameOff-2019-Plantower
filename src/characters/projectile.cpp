@@ -17,7 +17,7 @@ void Projectile::init() {
 void Projectile::update() {
     // Add character logic here
     animate();
-    if(m_target != nullptr) {
+    if(m_target != nullptr && m_scene->is_valid(m_target)) {
         float x_delta = m_target->get_x_center() - get_x_center();
         float y_delta = m_target->get_y_center() - get_y_center();
         float magnitude = std::sqrt(x_delta * x_delta + y_delta * y_delta);
@@ -25,6 +25,9 @@ void Projectile::update() {
         y_delta /= magnitude;
         float delta = m_scene->get_delta_time();
         move(x_delta * m_speed * delta,y_delta * m_speed * delta);
+    }
+    else {
+        m_scene->remove_character(this);
     }
     for(salmon::CollisionRef c : get_collisions()) {
         GameCharacter* other = nullptr;

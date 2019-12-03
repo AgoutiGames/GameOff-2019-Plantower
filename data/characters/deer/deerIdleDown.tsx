@@ -78,7 +78,7 @@
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="48" y="92" width="32" height="32"/>
-   <object id="2" name="ActivateRange" x="0" y="0" width="128" height="128"/>
+   <object id="2" name="ActivateRange" x="-15" y="4" width="166" height="165"/>
   </objectgroup>
  </tile>
 </tileset>

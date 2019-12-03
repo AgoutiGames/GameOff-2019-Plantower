@@ -78,28 +78,30 @@ void GameScene::remove_character(GameCharacter* game_character) {
 }
 
 void GameScene::trigger_kill() {
-    if(!m_kill_characters.empty()) {
-        for(GameCharacter* to_kill : m_kill_characters) {
+    while(!m_kill_characters.empty()) {
+        std::vector<GameCharacter*> temp = m_kill_characters;
+        m_kill_characters.clear();
+        for(GameCharacter* to_kill : temp) {
             if(!remove_character_internal(to_kill)) {
                 std::cerr << "Failed to remove character, possibly removed twice!\n";
             }
         }
-        m_kill_characters.clear();
     }
 }
 
 void GameScene::trigger_add() {
-    if(!m_add_characters.empty()) {
+    while(!m_add_characters.empty()) {
+        std::vector<GameCharacter*> temp = m_add_characters;
+        m_add_characters.clear();
         // First parsed characters get added to the scene
-        for(GameCharacter* to_add : m_add_characters) {
+        for(GameCharacter* to_add : temp) {
             m_characters.emplace_back(to_add);
         }
         // Then all new actors get inited
         // This is VERY important for characters who want to fetch other characters in their initialization phase
-        for(GameCharacter* to_add : m_add_characters) {
+        for(GameCharacter* to_add : temp) {
             to_add->init();
         }
-        m_add_characters.clear();
     }
 }
 
@@ -158,6 +160,13 @@ void GameScene::next_scene(std::string map_filename) {
 std::map<std::string, GameScene*>& GameScene::get_dict() {
     static std::map<std::string, GameScene*> scene_dict;
     return scene_dict;
+}
+
+bool GameScene::is_valid(GameCharacter* character) const {
+    for(auto& c : m_characters) {
+        if(c.get() == character) {return true;}
+    }
+    return false;
 }
 
 GameCharacter* GameScene::get_character_by_name(std::string name) {

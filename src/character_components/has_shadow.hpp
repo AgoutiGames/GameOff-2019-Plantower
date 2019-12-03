@@ -13,6 +13,7 @@ class HasShadow : public virtual GameCharacter {
         void update_shadow();
         GameCharacter* get_shadow();
         void tweak_shadow_position();
+        virtual ~HasShadow();
 
     private:
         GameCharacter* m_shadow = nullptr;

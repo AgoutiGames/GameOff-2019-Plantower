@@ -17,6 +17,8 @@ class Environment : public GameScene {
 
         bool m_fullscreen = false;
 
+        float m_zoom_level = 1.2f;
+
         static float enemy_cooldown;
         float m_current_enemy_cooldown = 0;
     private:
