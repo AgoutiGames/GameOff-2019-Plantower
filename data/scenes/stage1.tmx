@@ -214,10 +214,11 @@
    </properties>
   </object>
  </objectgroup>
- <imagelayer name="UI" locked="1">
+ <imagelayer name="UI" locked="1" offsetx="0.5" offsety="0">
   <image source="../overlay/plantower_overlay3.png" width="2304" height="1296"/>
   <properties>
    <property name="STATIC" type="bool" value="true"/>
+   <property name="STRETCH" type="bool" value="true"/>
   </properties>
  </imagelayer>
  <imagelayer name="Life" offsetx="155.227" offsety="-6.72727">
@@ -250,9 +251,10 @@
    <property name="STATIC" type="bool" value="true"/>
   </properties>
  </imagelayer>
- <imagelayer name="Bildebene 8" offsetx="1116" offsety="40">
+ <imagelayer name="Bildebene 8" offsetx="0.5" offsety="40">
   <image source="../overlay/waterFull.png" width="70" height="70"/>
   <properties>
+   <property name="KEEP_SIZE" type="bool" value="true"/>
    <property name="STATIC" type="bool" value="true"/>
   </properties>
  </imagelayer>
