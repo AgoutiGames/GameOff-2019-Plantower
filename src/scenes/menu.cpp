@@ -14,6 +14,10 @@ void Menu::init() {
     m_scene_manager->set_game_resolution(960,720);
     m_scene_manager->set_fullscreen(false);
     m_scene_manager->set_window_size(960,720);
+
+    // Preload whole data folder
+    m_scene_manager->add_preload_directory("");
+    m_scene_manager->preload(50);
     // Initializes all characters in scene
     GameScene::init();
     // Setup member vars here | example: put(m_speed, "m_speed");

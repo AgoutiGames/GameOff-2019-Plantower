@@ -72,6 +72,12 @@ void Player::update() {
         if(input.just_pressed("Space")) {
             m_attack = true;
         }
+        if(input.get_gamepad_count() > 0 && input.get_gamepad(0).button.a.pressed) {
+            m_attack = true;
+        }
+        if(input.get_gamepad_count() > 0) {
+            move(input.get_gamepad(0).axis.left_x, input.get_gamepad(0).axis.left_y);
+        }
 
         for(salmon::CollisionRef c : get_collisions()) {
             //std::cout << "Me: " << c.my_hitbox() << " You: " << c.other_hitbox() << "\n";
