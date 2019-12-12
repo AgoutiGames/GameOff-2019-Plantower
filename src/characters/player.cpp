@@ -91,7 +91,7 @@ void Player::update() {
         }
     }
     else {
-        salmon::AnimSignal sig = animate_trigger(salmon::AnimationType::custom1);
+        salmon::AnimSignal sig = animate_trigger("CUSTOM1");
         if(sig == salmon::AnimSignal::wrap || sig == salmon::AnimSignal::missing) {
             m_attack = false;
             animate(salmon::AnimationType::idle);
