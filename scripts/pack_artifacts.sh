@@ -45,8 +45,8 @@ fi
 cd "$(dirname "${BASH_SOURCE[0]}")"
 cd ../
 # Either set project name manually or to directory name
-PROJECT_NAME=${PWD##*/}
-#PROJECT_NAME="Game"
+# PROJECT_NAME=${PWD##*/}
+PROJECT_NAME="Plantower"
 if [ "$P" == "linux" ]
 then
     mkdir libs
