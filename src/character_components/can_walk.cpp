@@ -9,28 +9,28 @@ bool CanWalk::walk(salmon::Direction dir, float walk_speed, float animation_spee
     float s = walk_speed * m_scene->get_delta_time();
     switch(dir) {
         case salmon::Direction::up : {
-            return move(0,-1*s);
+            return move_relative(0,-1*s,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::up_left : {
-            return move(-0.7*s,-0.7*s);
+            return move_relative(-0.7*s,-0.7*s,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::up_right : {
-            return move(0.7*s,-0.7*s);
+            return move_relative(0.7*s,-0.7*s,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::left : {
-            return move(-1*s,0);
+            return move_relative(-1*s,0,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::right : {
-            return move(1*s,0);
+            return move_relative(1*s,0,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::down : {
-            return move(0,1*s);
+            return move_relative(0,1*s,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::down_left : {
-            return move(-0.7*s,0.7*s);
+            return move_relative(-0.7*s,0.7*s,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         case salmon::Direction::down_right : {
-            return move(0.7*s,0.7*s);
+            return move_relative(0.7*s,0.7*s,salmon::Collidees::tile, {salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX}, false);
         }
         default : {
             return false;

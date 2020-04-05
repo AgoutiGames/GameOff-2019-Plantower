@@ -12,6 +12,7 @@ class Tower : public GameCharacter {
 
         void init() override;
         void update() override;
+        std::string get_type() const override {return type;}
 
         void power_up();
 

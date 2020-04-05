@@ -6,8 +6,6 @@
 #include "data_block_ref.hpp"
 #include "core/scene_manager.hpp"
 
-#include "scenes/environment.hpp"
-
 const char* GameScene::type_string = "type";
 
 GameScene::GameScene(salmon::MapRef map, SceneManager* scene_manager)
@@ -181,10 +179,12 @@ GameCharacter* GameScene::get_character_by_id(unsigned id) {
     return nullptr;
 }
 GameCharacter* GameScene::get_character_by_type(std::string type) {
-    return get_character_by_attribute(GameCharacter::type_string, type);
+    std::vector<GameCharacter*> characters = get_characters_by_type(type);
+    if(characters.empty()) {return nullptr;}
+    else {return characters.front();}
 }
-GameCharacter* GameScene::get_character_by_template_type(std::string template_type) {
-    std::vector<GameCharacter*> characters = get_characters_by_template_type(template_type);
+GameCharacter* GameScene::get_character_by_template_name(std::string template_name) {
+    std::vector<GameCharacter*> characters = get_characters_by_template_name(template_name);
     if(characters.empty()) {return nullptr;}
     else {return characters.front();}
 }
@@ -237,12 +237,16 @@ std::vector<GameCharacter*> GameScene::get_characters_by_layer(std::string name)
     return characters;
 }
 std::vector<GameCharacter*> GameScene::get_characters_by_type(std::string type) {
-    return get_characters_by_attribute(GameCharacter::type_string, type);
-}
-std::vector<GameCharacter*> GameScene::get_characters_by_template_type(std::string template_type) {
     std::vector<GameCharacter*> characters;
     for(auto& c : m_characters) {
-        if(c->get_type() == template_type) {characters.push_back(c.get());}
+        if(c->get_type() == type) {characters.push_back(c.get());}
+    }
+    return characters;
+}
+std::vector<GameCharacter*> GameScene::get_characters_by_template_name(std::string template_name) {
+    std::vector<GameCharacter*> characters;
+    for(auto& c : m_characters) {
+        if(c->get_template_name() == template_name) {characters.push_back(c.get());}
     }
     return characters;
 }
@@ -302,12 +306,16 @@ std::vector<GameCharacter*> GameScene::filter_characters_by_layer(std::vector<Ga
     return ncharacters;
 }
 std::vector<GameCharacter*> GameScene::filter_characters_by_type(std::vector<GameCharacter*> characters, std::string type) {
-    return filter_characters_by_attribute(characters, GameCharacter::type_string, type);
-}
-std::vector<GameCharacter*> GameScene::filter_characters_by_template_type(std::vector<GameCharacter*> characters, std::string template_type) {
     std::vector<GameCharacter*> ncharacters;
     for(auto c : characters) {
-        if(c->get_type() == template_type) {characters.push_back(c);}
+        if(c->get_type() == type) {characters.push_back(c);}
+    }
+    return ncharacters;
+}
+std::vector<GameCharacter*> GameScene::filter_characters_by_template_name(std::vector<GameCharacter*> characters, std::string template_name) {
+    std::vector<GameCharacter*> ncharacters;
+    for(auto c : characters) {
+        if(c->get_template_name() == template_name) {characters.push_back(c);}
     }
     return ncharacters;
 }

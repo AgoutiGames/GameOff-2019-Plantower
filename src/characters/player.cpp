@@ -100,7 +100,7 @@ void Player::update() {
             //std::cout << "Me: " << c.my_hitbox() << " You: " << c.other_hitbox() << "\n";
             if(c.my_hitbox() == "ActivateRange" && c.actor()) {
                 GameCharacter* character = m_scene->get_character_by_id(c.get_actor_id());
-                if(character == nullptr || (character->type() != "SmallEnemy" && character->type() != "SmallEnemyAlt")) {continue;}
+                if(character == nullptr || (character->get_type() != "SmallEnemy" && character->get_type() != "SmallEnemyAlt")) {continue;}
                 m_scene->remove_character(character);
             }
         }

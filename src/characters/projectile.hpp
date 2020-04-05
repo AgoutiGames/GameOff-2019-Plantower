@@ -12,7 +12,9 @@ class Projectile : public GameCharacter {
 
         void init() override;
         void update() override;
+        std::string get_type() const override {return type;}
 
+        void move(float x, float y) {return move_relative(x,y);}
         void set_target(GameCharacter* character);
 
         static const char* type;

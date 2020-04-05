@@ -4,8 +4,6 @@
 
 #include "core/game_scene.hpp"
 
-#include "characters/player.hpp"
-
 const char* GameCharacter::type_string = "type";
 
 GameCharacter::GameCharacter(salmon::ActorRef actor, GameScene* scene) : salmon::ActorRef(actor), m_scene{scene} {}
@@ -44,10 +42,6 @@ GameCharacter* GameCharacter::parse_character(salmon::ActorRef actor, GameScene*
     else {
         return get_dict().at(type)->create(actor, scene);
     }
-}
-
-std::string GameCharacter::type() {
-    return get_data().get_val_string(type_string);
 }
 
 std::map<std::string, GameCharacter*>& GameCharacter::get_dict() {

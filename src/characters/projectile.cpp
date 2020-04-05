@@ -34,7 +34,7 @@ void Projectile::update() {
         if(c.actor()) {
             other = m_scene->get_character_by_id(c.get_actor_id());
             if(other == nullptr) {continue;}
-            if(other->type() != "SmallEnemy") {continue;}
+            if(other->get_type() != "SmallEnemy") {continue;}
             m_scene->remove_character(other);
             m_scene->remove_character(this);
             break;

@@ -3,6 +3,8 @@
 [Bb]in/
 [Ll]ib/
 [Ll]ibs/
+emsdk/
+emscripten_deps/
 
 # Prerequisites
 *.d

@@ -14,6 +14,9 @@ class SmallEnemy : public virtual GameCharacter {
 
         void init() override;
         void update() override;
+        std::string get_type() const override {return type;}
+
+        bool move(float x, float y) {return move_relative(x,y,salmon::Collidees::tile,{salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX},false);}
 
         static const char* type;
     protected:

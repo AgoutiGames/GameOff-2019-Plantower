@@ -42,7 +42,7 @@ void Tower::update() {
                     if(magnitude < firing_distance) {
                         Projectile* p = static_cast<Projectile*>(m_scene->add_character("Projectile","Characters","GeneratedProjectile"));
                         p->set_target(c);
-                        p->move(get_x_center(), get_y_center(),true);
+                        p->move_absolute(get_x_center(), get_y_center());
                         m_current_cooldown = cooldown;
                         break;
                     }

@@ -12,6 +12,7 @@ class Marker : public GameCharacter {
 
         void init() override;
         void update() override;
+        std::string get_type() const override {return type;}
 
         float get_marker_pos_x();
         float get_marker_pos_y();
