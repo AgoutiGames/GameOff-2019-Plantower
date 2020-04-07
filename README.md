@@ -11,8 +11,4 @@ This game is a tower-defense action-adventure crossover in an early state. It wa
 </details>
 
 ## Contact
-* [Agouti Games](https://agouti.games)
-* [Discord Server](https://discord.gg/thAaD9e)
-* [Tumblr](https://agoutigames.tumblr.com/)
-* [Soundcloud](https://soundcloud.com/agoutigames)
-* [Twitter](https://twitter.com/agoutigames)
+**[Patreon](https://www.patreon.com/agoutigames) | [Homepage](https://agouti.games) | [Discord](https://discord.gg/thAaD9e) | [Twitter](https://twitter.com/agoutigames) | [itch.io](https://agoutigames.itch.io/) | [Twitch](https://www.twitch.tv/agouti_games)**
