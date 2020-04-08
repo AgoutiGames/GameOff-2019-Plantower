@@ -21,7 +21,7 @@ void Menu::init() {
     // Initializes all characters in scene
     GameScene::init();
     // Setup member vars here | example: put(m_speed, "m_speed");
-    m_bg_music = get_audio_manager().get_music("./music/planTower_main.flac");
+    m_bg_music = get_audio_manager().get_music("./music/planTower_main.ogg");
     if(!m_bg_music.playing()) {m_bg_music.play();}
 }
 
